@@ -1,0 +1,33 @@
+#
+ Dim sFileName As String = "c:\temp\BPs.xml“​
+
+ Dim lEcount, ii As Long​
+
+ 'Get the number of Business object in the file ...​
+ lEcount = oCompany.GetXMLelementCount(sFileName)​
+
+
+ 'Loop through the objects; when finding the first BusinessPartner ​
+
+ 'object: load it, add it to the DB.​
+
+ For ii = 0 To lEcount–1 ​
+   If oCompany.GetXMLobjectType(sFileName, ii) = _​
+
+ SAPbobsCOM.BoObjectTypes.oBusinessPartners Then​
+
+
+     ‘”Read” the Business object data into the object…​
+
+     ‘Please note:​
+
+     ‘If the format is not OK you might run into an exception!​
+     oBP = oCompany.GetBusinessObjectFromXML(sFileName, ii)​
+
+
+     iRetVal = oBP.Add()​
+     ‘…handle error…​
+
+   End If​
+ Next ii​  
+#

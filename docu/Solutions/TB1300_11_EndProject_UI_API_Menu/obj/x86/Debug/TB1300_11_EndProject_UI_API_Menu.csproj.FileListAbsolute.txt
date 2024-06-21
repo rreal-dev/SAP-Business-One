@@ -1,0 +1,9 @@
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_11_EndProject_UI_API_Menu\bin\x86\Debug\11_UI_API_Menu.exe.config
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_11_EndProject_UI_API_Menu\bin\x86\Debug\11_UI_API_Menu.exe
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_11_EndProject_UI_API_Menu\bin\x86\Debug\11_UI_API_Menu.pdb
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_11_EndProject_UI_API_Menu\bin\x86\Debug\SAPBusinessOneSDK.dll
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_11_EndProject_UI_API_Menu\obj\x86\Debug\TB1300.Properties.Resources.resources
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_11_EndProject_UI_API_Menu\obj\x86\Debug\TB1300_11_EndProject_UI_API_Menu.csproj.GenerateResource.Cache
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_11_EndProject_UI_API_Menu\obj\x86\Debug\11_UI_API_Menu.exe
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_11_EndProject_UI_API_Menu\obj\x86\Debug\11_UI_API_Menu.pdb
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_11_EndProject_UI_API_Menu\obj\x86\Debug\TB1300_11_EndProject_UI_API_Menu.csprojResolveAssemblyReference.cache

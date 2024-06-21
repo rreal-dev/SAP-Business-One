@@ -1,0 +1,344 @@
+#############################
+TB1300_03_DI_API_Intoduction #
+-----------------------------
+
+.-Introducción a DI API: Objetivos del tema
+
+Después de completar este tema, podrá
+
+Explicar la arquitectura de la DI API​
+
+Categorizar los objetos disponibles
+
+Explicar las características clave de DI API​
+
+Establecer una conexión con una empresa
+
+--
+
+.-SDK de SAP Business One: descripción general de los componentes
+
+En la diapositiva actual, puede ver el diagrama arquitectónico básico para los componentes de SAP Business One relacionados con el SDK.
+
+Las diferentes interfaces de programación de aplicaciones (APIs) incluidas en el SDK utilizan estándares abiertos de Microsoft que permiten el acceso a una gran cantidad de objetos comerciales proporcionados por SAP Business One.​
+
+Los Runtime de la API se instalan con la aplicación cliente de SAP Business One, excepto para el servidor DI, que forma parte de la instalación de las herramientas del servidor de SAP Business One(Business One Server Tools).
+
+Puede acceder a SAP Business One ​
+
+a nivel de datos comerciales a través de la API de interfaz de datos (DI API). La mayoría de los objetos comerciales de SAP Business One están expuestos en esta API. Se puede acceder a ellos mediante programas externos. Si prefiere usar Java, use "Java Connector" para acceder a DI API.
+
+en el nivel de datos comerciales a través del servidor de interfaz de datos (DI). DI Server es un servicio DCOM que se ejecuta en el servidor SAP Business One y acepta datos XML empaquetados en "sobres" SOAP (Simple Object Access Protocol).
+
+en el nivel de interfaz de usuario: la API de interfaz de usuario (UI API) brinda acceso a una aplicación en ejecución donde puede agregar o modificar formularios y proporcionar sus propios controladores de eventos(event handlers) para influir activamente en la lógica comercial existente.
+
+Además de eso, puede definir sus propios objetos comerciales, objetos definidos por el usuario (UDO), que se unen a la colección de objetos comerciales de SAP Business One.
+
+--
+
+.-API de interfaz de datos(DI API): ejemplo empresarial
+
+La API de interfaz de datos (DI API) es un conjunto de herramientas de desarrollo que permite a los socios comerciales de SAP(SAP Business Partners) mejorar y ampliar SAP Business One, así como integrar soluciones externas con la aplicación SAP Business One.
+
+La DI API se puede utilizar para acceder a la aplicación SAP Business One en el nivel de la base de datos, para ampliar su funcionalidad, vincularla con soluciones de terceros(third-party solutions) y adaptar la funcionalidad de SAP Business One para satisfacer las necesidades de los clientes(customers).
+
+--
+
+.-Introducción a DI API: principio arquitectónico general
+
+Esta diapositiva proporciona detalles sobre la arquitectura de software de la API de interfaz de datos (API DI): ​
+
+Las funciones comerciales se incluyen en una capa de implementación (OBServerDLL.DLL).​
+
+La DLL se basa en el código fuente existente del cliente SAP Business One, es decir, los objetos comerciales del cliente SAP Business One se copiaron en esta DLL.​
+
+Puede acceder a los objetos comerciales del cliente SAP Business One dirigiéndose a la capa de interfaz, que está representada por SAPbobsCOM.DLL.​
+
+Además de los objetos comerciales existentes, también puede abordar objetos más genéricos, como el objeto RecordSet.
+
+--
+
+.-Introducción a la DI API: arquitectura de software
+
+El Data Manager almacena datos de objetos temporales(temporary object data), convierte datos de objetos(object data) a formatos de datos internos(internal data formats), recupera datos de la base de datos y controla las transacciones de la base de datos.
+
+El Schema Generator crea esquemas XML basados ​​en descripciones de interfaz de objetos. El generador de esquemas también crea listas de validación de objetos(object validation list).
+
+El DI Core, que es el componente principal de DI API, realiza todas las operaciones de lógica de datos.
+
+La COM Interface proporciona la interfaz para la aplicación adicional.​
+
+
+La DI API utiliza el componente OBServerDLL.dll que realiza todas las operaciones de lógica empresarial.
+(El componente OBServerDLL.dll no forma parte del paquete DI API, pero se distribuye con la aplicación SAP Business One).​
+
+​
+La DI API es un contenedor(wrapper) para OBServerDLL.dll
+
+La DI API utiliza la misma lógica empresarial y los mismos permisos que si funcionara en la aplicación cliente de SAP Business One.
+
+--
+
+.-Introducción a la DI API: categorías de objetos
+
+El objeto DI API se puede dividir en tres categorías principales:
+​
+En la primera categoría, los Business Objects, puede encontrar el Master Data Object y los Transactional Data Objects.
+​
+La segunda categoría, los Infrastructure Objects, contienen objetos como el objeto Empresa(Company), la funcionalidad extendida(Extended) y los Meta Data objects.
+
+La tercera categoría, los Special Objects, contienen objetos de tipo de servicio y objetos relacionados con la interfaz gráfica de usuario.
+
+Echaremos un vistazo más de cerca a los objetos DI API en las próximas diapositivas.
+
+--
+
+.-DI API Introduction: Objetos de negocio(Business Objects)
+
+Los Business Objects representan la funcionalidad de la aplicación SAP Business One y permiten agregar, actualizar, buscar y eliminar datos de las tablas de negocios de la base de datos de la empresa.
+
+El uso de Business Objects es el método recomendado para acceder a los datos dentro de una base de datos de la empresa SAP Business One, ya que realiza las comprobaciones de autorización y las validaciones de la lógica empresarial.
+
+
+Cualquier acceso a datos que utilice objetos comerciales es independiente de la plataforma y la versión(release). Un programa de cliente externo que accede a los datos utilizando los objetos comerciales asegura la adaptabilidad con futuras versiones de SAP Business One.​
+
+Los objetos comerciales siguen la lógica comercial adecuada y no comprometerán la integridad de los datos(data integrity).
+
+
+La imagen muestra el Business Partner Master Data. El objeto principal se llama BusinessPartners y recopila objetos secundarios(child objects) adicionales, como Contact Employees, Addresses, etc.
+
+--
+
+.-DI API Introduction: Service Type Objects / Services​
+
+Los DI API Service Type Objects (Services) se basan en el concepto de Arquitectura Orientada a Servicios (SOA).​
+
+Los Services proporcionan interfaces a la lógica adicional dentro de SAP Business One, que no está necesariamente encapsulada en un objeto comercial.​
+
+
+El principal servicio es el CompanyService, que permite gestionar los datos de administración de la empresa.​
+
+Por ejemplo, puede actualizar los Administration data (OADM) o los Company data (CINF) o crear nuevos Posting Periods (OACP) o actualizar los Finance Periods (OFPR).
+
+--
+
+.-Introducción a DI API: Infrastructure Objects
+
+Los objetos de infraestructura son metadatos generales e información de configuración para la base de datos de la empresa SAP Business One.
+
+​
+Hay tres tipos de objetos de infraestructura:
+
+El Company object es el objeto principal en la API de interfaz de datos(DI API). Este objeto le permite conectarse a la base de datos de la empresa y crear objetos comerciales para usar con la base de datos de la empresa.
+
+​
+En el Extended Functionality Object puede encontrar el objeto Recordset. Recordset es un objeto de acceso a datos sin procesar que le permite seleccionar datos de la base de datos, navegar a través del conjunto de resultados y manipular tablas de usuario, que no están expuestas por la DI API.
+
+El DataBrowser le permite navegar entre registros(records) seleccionados de la base de datos o de datos con formato XML. Todos los objetos comerciales pueden llamar al objeto DataBrowser usando la propiedad Browser. Debe usar un objeto Recordset para inicializar el objeto DataBrowser.​
+
+El SBObob object es un objeto de acceso a datos sin procesar que le permite recuperar información rápida y fácilmente. Los datos devueltos suelen ser un objeto Recordset que permite la manipulación de datos.
+
+
+Los Meta Data Objects le permiten trabajar con User Defined Tables (UDT), fields (UDF), Keys y Objects (UDO).
+
+--
+
+.-Introducción a DI API: Company Object​
+
+El Company object es el objeto principal de la API de interfaz de datos(DI API).​
+
+Debe utilizar un método del Company object para conectarse a una base de datos existente de SAP Business One.​
+
+En consecuencia, también puede desconectar su aplicación de esa base de datos.​
+
+Cuando haya establecido la conexión, puede acceder a los datos en la base de datos de SAP Business One para el Company object.
+
+Usando estos métodos correspondientes del Company object, también puede consumirlos dentro de transacciones únicas o globales, que abarcan más de un objeto comercial.
+
+El Company object es el único objeto de DI API que puede crear directamente. Luego puede usar el Company object para crear todos los demás objetos DI API.
+
+--
+
+.-Introducción a la DI API: Iniciar sesión​(Log On)
+
+#
+ Object:​
+
+ Company  ​
+
+
+
+ Methods:​
+
+ +Connect()​
+
+ …​
+
+ Properties:​
+
+ Server​
+
+ ServerType (opt.)​
+
+ CompanyDB ​
+
+ UserName ​
+
+ Password ​
+
+ DBUserName (comp.)​
+
+ DBPassword (comp.)​
+
+ Language (opt.)​
+
+ UseTrusted    (comp.)​
+
+ AddOnIdentifier (opt.)​
+
+ …​
+
+ (comp.) := kept for backward compatibility​
+
+
+ Dim oCompany As SAPbobsCOM.Company​
+
+ Dim lRetCode, lErrCode As Long​
+
+ Dim sErrMsg as String​
+
+
+
+ 'Instantiate a Company object​
+
+ oCompany   = New SAPBobsCOM.Company​
+
+ oCompany.Server = “dbservername“​
+
+ oCompany.DbServerType   = SAPbobsCOM.BoServerTypes.dst_MSSQL2008 ​
+
+ oCompany.CompanyDB = "SBODemoUS"​
+
+ oCompany.UserName  = “user1"​
+
+ oCompany.Password  = “<user1 password>“​
+
+ oCompany.Language  = ln_English​
+
+
+
+ ‘Set Add-on identifier –optional!​
+
+ ‘oCompany.AddOnIdentifier  = “fill in your Add-On Identifier here”​
+
+
+
+ lRetCode = oCompany.Connect()​
+
+
+
+ 'Check Return Code​
+
+ If lRetCode <> 0 Then​
+
+  oCompany.GetLastError(lErrCode, sErrMsg)​
+
+ End If​
+#
+
+Para ejecutar un Add-On, primero debe establecer una conexión a una base de datos. El código para la conexión es bastante simple, como se muestra en esta diapositiva.
+
+​
+Siga estos pasos para establecer una conexión a una base de datos:​
+
+Primero defina una variable para el Company object.​
+
+Luego inicialice el Company object.​
+
+Después de eso, defina las propiedades de contención en el Company object.​
+
+Alternativamente, puede configurar el identificador de Add-On si desea tener un identificador de cadena único para su add-on solution.
+
+Luego se debe llamar al método Connect, que se conecta a la base de datos de la empresa SAP Business One.​
+
+Al final, puede aparecer una ejecución de manejo de errores.
+​
+
+Para usar SAPbobsCOM.DLL, debe establecer una referencia. En Microsoft Visual Studio, por ejemplo, puede hacerlo en (Proyecto _> Referencias).
+
+--
+
+.-Introducción a DI API: manejo de errores(Error Handling) en DI API​
+
+Aquí hay dos formas con las que debe estar familiarizado para manejar los errores
+(handle errors):​
+
+-Return Code + GetLastError​
+
+Use the return value of some methods to verify the result of the execution, such as Add, Update, Remove…​
+
+Use GetLastError method of the Company object to retrieve the last error message and code issued by any object related to the Company object ​
+
+AND​
+
+-Exception Handling​
+Some objects will throw an exception.​
+
+In VB, we can use “On Error GoTo ErrorHandler” to process these errors – or Exception handling (try / catch in .NET incl. VB .NET).​
+​
+Exception can be raised by methods and properties (e.g. type mismatch)​(tipo no coincide)
+
+
+
+
+El primer método es verificar el código de respuesta de la llamada del objeto.​
+(-Return Code + GetLastError​)
+
+Cuando se produce un error en SAP Business One durante el acceso a los datos, puede llamar al método GetLastError del Company object para obtener el código de retorno y la descripción del error.
+
+Debes llamar al método tan pronto como se produzca el error. Una vez que haya llamado a los métodos posteriores, la información del error se perderá.
+
+Si no se producen errores, el código de error contiene el valor 0 y el mensaje de error es una cadena vacía. De lo contrario, el código de error contiene un valor distinto de 0 y el mensaje de error contiene la descripción del error.
+
+​
+La segunda opción para manejar los errores es el manejo de excepciones
+(-Exception Handling​).
+
+Si ocurre un error durante la ejecución de un método, el método lanzará una excepción. Debe verificar estas excepciones por separado del valor devuelto.
+
+Cuando ocurre un error en tiempo de ejecución, las propiedades del objeto de error se llenan con información que identifica de manera única el error y la información que se puede usar para manejarlo.
+
+--
+
+.-La API de interfaz de datos: caso de uso
+
+La API de interfaz de datos se puede utilizar en varios escenarios.
+
+​
+Puede integrar la aplicación existente con SAP Business One leyendo los datos de escritura de SAP Business One por DI API.​
+
+Alternativamente, se puede desarrollar una herramienta de intercambio de datos para realizar algunos procedimientos automatizados de exportación e importación de datos.​
+Recomendamos utilizar el marco de integración para SAP Business One como plataforma de integración principal.
+
+​
+Otro caso de uso puede ser el manejo de datos(data handling) de las extensiones basadas en la API de la interfaz de usuario(UI API). Si desea cambiar los datos en SAP Business One, entonces es esencial utilizar la DI API o el Service Layer, ya que estas API garantizan la integridad de los datos(data integrity).
+
+Aunque otras técnicas pueden ser más rápidas cuando se trata de leer datos de la base de datos, el uso de DI API suele ser una buena opción en cuanto a usabilidad (no es necesario solicitar credenciales adicionales, etc.) y coherencia de datos (imagínese que los datos requeridos podrían almacenarse en varias tablas).
+
+--
+
+.-Introducción a la DI API: Ejercicio​
+
+Es hora de realizar un ejercicio sencillo. 
+
+Crearemos un nuevo proyecto de Visual Studio para establecer una conexión con la base de datos de la empresa SAP Business One utilizando DI API.
+
+
+
+
+
+
+
+
+
+

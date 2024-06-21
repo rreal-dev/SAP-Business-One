@@ -1,0 +1,6 @@
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_14_EndProject_UI_DI_UDO\bin\Debug\14_UI_DI_UDO.exe
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_14_EndProject_UI_DI_UDO\bin\Debug\14_UI_DI_UDO.pdb
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_14_EndProject_UI_DI_UDO\bin\Debug\SAPBusinessOneSDK.dll
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_14_EndProject_UI_DI_UDO\obj\Debug\TB1300_14_EndProject_UI_DI_UDO.csprojResolveAssemblyReference.cache
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_14_EndProject_UI_DI_UDO\obj\Debug\14_UI_DI_UDO.exe
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_14_EndProject_UI_DI_UDO\obj\Debug\14_UI_DI_UDO.pdb

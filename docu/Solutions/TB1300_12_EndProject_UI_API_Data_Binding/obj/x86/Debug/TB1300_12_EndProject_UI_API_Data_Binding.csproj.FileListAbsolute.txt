@@ -1,0 +1,9 @@
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_12_EndProject_UI_API_Data_Binding\bin\x86\Debug\12_UI_API_Data_Binding.exe.config
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_12_EndProject_UI_API_Data_Binding\bin\x86\Debug\12_UI_API_Data_Binding.exe
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_12_EndProject_UI_API_Data_Binding\bin\x86\Debug\12_UI_API_Data_Binding.pdb
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_12_EndProject_UI_API_Data_Binding\bin\x86\Debug\SAPBusinessOneSDK.dll
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_12_EndProject_UI_API_Data_Binding\obj\x86\Debug\TB1300_12_EndProject_UI_API_Data_Binding.csprojResolveAssemblyReference.cache
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_12_EndProject_UI_API_Data_Binding\obj\x86\Debug\TB1300.Properties.Resources.resources
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_12_EndProject_UI_API_Data_Binding\obj\x86\Debug\TB1300_12_EndProject_UI_API_Data_Binding.csproj.GenerateResource.Cache
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_12_EndProject_UI_API_Data_Binding\obj\x86\Debug\12_UI_API_Data_Binding.exe
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_12_EndProject_UI_API_Data_Binding\obj\x86\Debug\12_UI_API_Data_Binding.pdb

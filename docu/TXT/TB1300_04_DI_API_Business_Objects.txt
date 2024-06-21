@@ -1,0 +1,840 @@
+#################################
+TB1300_04_DI_API_Business_Objects #
+----------------------------------
+
+.-Business Objects: Topic Objectives​
+
+Después de completar este tema, podrá:
+
+Describir qué son los business objects.
+
+Enumere los métodos más importantes de los business objects.
+
+Explicar cómo leer o escribir un business object desde o hacia un archivo XML.
+
+Diseñe un transaction que involucre más de un business object.
+
+Explicar cómo recibir notificaciones de cambios en los business objects.
+
+--
+
+.-Business Objects: descripción general
+
+Los Business objects representan la funcionalidad de una aplicación SAP Business One y permiten agregar, actualizar, buscar y eliminar datos de las tablas comerciales(business tables) de la base de datos de la empresa(company database).
+
+Este es el método recomendado para acceder a los datos dentro de una base de datos de la empresa SAP Business One: ​
+
+Los business objects realizan comprobaciones de autorización.
+
+Los business objects siguen la lógica comercial adecuada y no comprometerán la integridad de los datos.
+
+Cualquier acceso a datos que utilice business objects es independiente de la plataforma y la versión(release). Un programa de cliente externo que accede a los datos utilizando los business objects asegura la adaptabilidad con futuras versiones de SAP Business One.
+
+--
+
+.-Objetos de negocio: arquitectura
+
+#
+ Object:​
+
+ <Business Object>​
+
+ Methods:​
+
+ +Add ​_> Add a new Object​
+
+ +GetByKey​ _> Get the object by key
+
+ +Remove​ _> Remove the object (if possible)
+
+ +SaveXML​ _> Save the object as XML file
+
+ +Update​ _> Update the object
+
+ Properties:​
+
+ + CardCode​ _> Sets or returns the customer or vendor name
+
+ Child Objects:​
+
+ + Browser​ _> Allows navigation/browsing over records
+
+ + UserFields​ _> A collection of fields objects, which are user defined fields​
+
+ + Document_Lines​ _> Represents the line entries of a document
+#
+
+Es hora de echar un vistazo a la arquitectura de business object.
+
+El objeto tiene los métodos que hacen posible realizar acciones con el objeto, como agregar, obtener, actualizar y eliminar.
+
+La parte adicional del objeto son las propiedades. Las propiedades son un tipo especial de elemento de objeto, una funcionalidad intermedia entre un archivo y un método.
+
+La última parte del business object son los objetos secundarios(child objects). Estos objetos almacenan información en múltiples tablas.
+
+Ejemplos de business objects:
+
+ *Item master data​ 
+
+ *Business partner master data​ 
+
+ *Product tree objects​ 
+
+ *Documents (Sales(ventas) and Purchasing(compras) documents)​
+
+ *Payments object 
+
+
+El método SaveXML le permite extraer un objeto y guardarlo como un archivo XML. Los datos XML también se pueden importar utilizando el Company object.
+
+--
+
+.-Business Objects: Arquitectura – Objetos secundarios(Child Objects)
+
+#
+ Object:​
+
+ <Child Object>​
+
+
+ Methods:​
+
+ +Add​ _> Add a new record​
+
+ +SetCurrentLine​ _> Set the current line​
+
+ +Delete​ _> Delete a record (available for most part of objects)​
+
+ Properties:​
+
+ …​
+#
+
+Los Business Object a menudo se refieren a Child objects.
+
+Los ejemplos de Line objects incluyen los siguientes:
+
+ *Direcciones de socios comerciales (BPAddresses)​
+
+ *ItemWarehouseInfo contenida en items
+
+ *Líneas de documento (Document_Lines object)​
+
+ *Cuentas de pago (objeto Payments_Accounts)​
+
+Casi todos los line objects tienen los siguientes métodos:
+
+ *Add (agregar un nuevo line object, por ejemplo, una dirección alternativa para un        business partner)​
+
+ *SetCurrentLine (establece la current line dentro de la colección de line objects).   El contador empieza desde cero.
+
+--
+
+.-Business Objects: Business Partners​
+
+BusinessPartners es un business object que representa los master data del socio comercial en el módulo Business Partners.
+
+Este objeto le permite:​
+
+ *Perform authorization checks (Realizar comprobaciones de autorización)
+
+ *Seguir la lógica empresarial adecuada que no comprometa la integridad de los datos
+
+ *Add a business partner record (registro de socio comercial)
+
+ *Recuperar un business partner record a través de su clave
+
+ *Actualizar un business partner record
+
+ *Eliminar un business partner record
+
+ *Guarda el objeto en formato XML ​
+
+También puede usarlo para manejar campos adicionales definidos por el usuario(user-defined fields) relacionados con el objeto BusinessPartners.​
+
+En la diapositiva, puede ver que el objeto BusinessPartners es una colección de subobjetos adicionales (o child objects) relacionados con los datos maestros del business partner, como direcciones, empleados, métodos de pago, etc.
+
+--
+
+.-Business Objects: ejemplo: agregar socio comercial​(Add Business Partner)
+
+# 
+ 'First connect to database (see Log on sample)​
+
+ …​
+
+ 'Some variables:​
+
+ Dim oBP As SAPbobsCOM.BusinessPartners​
+ Dim lRetCode, lErrCode As Integer​
+
+ Dim sErrMsg As String​
+
+
+
+ ‘Prepare empty oBP Object:​
+
+ oBP = oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oBusinessPartners)​
+
+
+ oBP.CardCode = "C08154711"​
+ oBP.CardName = "James Tiberius Kirk"​
+ oBP.CardType = SAPbobsCOM.BoCardTypes.cCustomer​
+ '…​
+
+
+ ‘Add the new BP to the database​
+
+ lRetCode = oBP.Add()​
+
+
+ If lRetCode <> 0 Then​
+
+  oCompany.GetLastError(lErrCode, sErrMsg)​
+
+  MessageBox.Show("Error: " sErrMsg + “; Code: “ + lErrCode)​
+
+ End If
+# 
+
+Echemos un vistazo a un ejemplo de código fuente, escrito en lenguaje Visual Basic, que crea un nuevo registro maestro de socios comerciales.
+
+Como primer paso, debe crear una instancia del business partner object. Para ello, utilice el método GetBusinessObject del Company object.​
+
+A continuación, puede introducir las propiedades del business partner. Debe proporcionar al menos las propiedades obligatorias. En este caso, debe proporcionar la propiedad CardCode. El procedimiento de autocompletar incorporado completa los valores predeterminados de las otras propiedades.
+
+En el último paso, llame al método add para crear un nuevo registro de socio comercial en la base de datos de su empresa.
+
+Tenga en cuenta que GetBusinessObject devuelve un "objeto" genérico que debe convertirse en la clase de objeto real en otros lenguajes de programación (¡que no sean VB!).
+
+--
+###############################################################################
+.-Business Objects: Ejemplo – Child Object​ 
+
+#
+ 'First connect to database (see Log on sample)​
+
+ '…​
+
+ ‘Variables:​
+
+ Dim oBP As SAPbobsCOM.BusinessPartners = _​
+
+     oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oBusinessPartners)​
+
+ Dim lRetCode As Integer​
+
+
+
+ If oBP.GetByKey(“C08154711”) = True then ‘here we use an existing record…​
+
+  ‘First line is always prepared (in any business object that has lines…)​
+
+   oBP.ContactEmployees.Name = "John Cash“​
+
+
+
+   ‘Prepare / declare 2nd line… (automatically positions on new line)​
+
+   oBP.ContactEmployees.Add()  ‘No in DB here – therefore will work always…​
+
+   oBP.ContactEmployees.Name = “John Walker“​
+
+
+
+   ‘Please note: In case you need to position on particular line…​
+
+   ‘oBP.ContactEmployees.SetCurrentLine(<0-based line no.>)​
+
+
+
+   ‘Write changes to DB now…!​
+
+   lRetCode = oBP.Update()​
+
+   If lRetCode <> 0 Then​
+
+    …​
+
+   End If​
+
+ Else​
+
+   MessageBox.Show(„Business Partner C08154711 not found!“)​
+
+ End if
+#
+
+Aquí, tenemos un ejemplo de un child object del objeto BusinessPartners.
+
+Puede agregar varios contact employees a un registro de business partner.​
+
+Para hacerlo, primero debe agregar un contact employee row, utilizando el método de agregar correspondiente.​
+
+En el segundo paso, configura la línea actual en la matriz de contact employees.​
+
+Luego puede ingresar las propiedades del contact employees.
+
+--
+
+.-Business Objects: artículos(items)
+
+El siguiente business object que se usa con mucha frecuencia es el objeto Artículos, que representa el registro de artículos del inventario maestro en SAP Business One.
+
+Los métodos que utiliza para manipular los datos de los artículos son similares a los del objeto comercial BusinessPartners descrito anteriormente en SAP Business One.​
+
+En este objeto comercial, se asigna una amplia variedad de objetos secundarios para almacenar la información de datos maestros del artículo en una única jerarquía de objetos.
+
+--
+
+.-Business Objects: Documents​
+
+En las diapositivas anteriores, vimos el tipo de datos maestros de los objetos comerciales.​
+
+Documentos es un objeto comercial que representa los datos de encabezado de los documentos en los módulos Documentos de marketing y recibos y los módulos Inventario y Producción de la aplicación SAP Business One.​
+
+Contiene los datos maestros del encabezado del documento, como el código de la tarjeta, la dirección, la fecha del documento, el total del documento, etc.
+
+El objeto Documentos almacena la información en más de 25 tablas de base de datos. El contenido del objeto secundario se organiza en consecuencia.
+
+​--
+
+.-Documents: Ejemplo – Crear un pedido(Create an Order)
+
+#
+ Dim oOrderDoc as SAPbobsCOM.Documents​
+
+ oOrderDoc = oCompany.GetBusinessObject _​
+
+ (SAPbobsCOM.BoObjectTypes.oOrders)​
+
+
+
+  ' set the business partner code​
+
+  oOrderDoc.CardCode = "C20000"​
+
+  ' set the documents due date - mandatory​
+
+  oOrderDoc.DocDueDate = Date​
+
+
+
+   ' First line  (no need to add line) ​
+
+   oOrderDoc.Lines.ItemCode = "A00001"​
+
+   oOrderDoc.Lines.Quantity = 1​
+
+    ​
+
+    ' Second line​
+
+    ' first prepare empty line for the second line​
+
+    oOrderDoc.Lines.Add()​
+
+    ​
+
+    oOrderDoc.Lines.ItemCode = "A00002"​
+
+    oOrderDoc.Lines.Quantity = 1       ​
+
+
+  ' Adding the new order document​
+
+  Dim RetVal As Long​
+
+   ​
+
+  ' Add Order to the database​
+
+  RetVal = oOrderDoc.Add()​
+
+    ​
+
+  ' Check if Add method succeeded​
+
+  If RetVal <> 0 Then​
+
+      oCompany.GetLastError( lErrCode, ErrMsg)​
+
+      MessageBox.Show(lErrCode & " " & sErrMsg)​
+
+  End If
+
+#
+
+
+En este ejemplo, podemos ver cómo se ve la estructura del código en el lenguaje Visual Basic.
+
+Comenzamos con la creación de la instancia de objeto de documento, que especifica el tipo de documento como pedido de cliente.
+
+Luego vienen las propiedades del objeto del documento, como el CardCode y la fecha del documento.​
+
+Luego necesitamos agregar las líneas del documento, usando el objeto secundario. Después de la definición de la línea, llamamos al método add para separar las líneas y prepararnos para los detalles de la siguiente línea.​
+
+No es necesario llamar al método add para el objeto de líneas de documento para la última línea, ya que la lógica empresarial de la API DI realizará este paso automáticamente.
+
+En el ejemplo actual, podemos ver cómo se crea una nueva variable numérica para almacenar el código de respuesta para la ejecución del método de agregar objeto de documento.​
+
+Después de ejecutar el método add, podemos realizar el manejo de errores en función del valor del código de respuesta.
+
+--
+
+.-Documents: Ejemplo: crear una factura (basada en el pedido)​ 
+                      Create an Invoice (based on the order)​
+
+
+#
+ ' Create Invoice​
+
+ Sub CreateInvoiceDocument()   ​
+
+ ' Get the DocNum for the new added order added on slide before…​
+
+ Dim OrdCodeStr As String​
+
+ oCompany.GetNewObjectCode (OrdCodeStr)​
+
+ ' Get the required business object​
+
+ Dim oInvoiceDoc    As SAPbobsCOM.Documents​
+
+ oInvoiceDoc = oCompany.GetBusinessObject​
+
+ (SAPbobsCOM.BoObjectTypes.oInvoices)      ​
+
+ ' set the business partner code​
+
+ oInvoiceDoc.CardCode = "C20000"​
+
+ ' set the document’s due date - mandatory​
+
+ oInvoiceDoc.DocDueDate = Date​
+
+ ' First line (always there… )​
+
+ oInvoiceDoc.Lines.BaseType = SAPbobsCOM.BoObjectTypes.oOrders​
+
+ oInvoiceDoc.Lines.BaseEntry = CInt(OrdCodeStr)​
+
+ oInvoiceDoc.Lines.BaseLine = 0​
+
+ oInvoiceDoc.Lines.TaxCode = "LA"​
+
+ '  Second line; first: prepare line​
+
+ oInvoiceDoc.Lines.Add()​
+
+
+
+ oInvoiceDoc.Lines.BaseType = _​
+
+             SAPbobsCOM.BoObjectTypes.oOrders​
+
+ oInvoiceDoc.Lines.BaseEntry = CInt(OrdCodeStr)​
+
+ oInvoiceDoc.Lines.BaseLine = 1​
+
+ oInvoiceDoc.Lines.TaxCode = "LA"​
+
+    ​
+
+ ' Add Invoice to the database​
+
+ RetVal = oInvoiceDoc.Add​
+
+    ​
+
+ ' Check if Add method succeeded​
+
+ If RetVal <> 0 Then​
+
+    oCompany.GetLastError(lErrCode, sErrMsg)​
+
+    MessageBox.Show(lErrCode & " " & sErrMsg)​
+
+ End If​
+
+ End Sub
+#
+
+En SAP Business One, los documentos se basan con frecuencia unos en otros.​
+
+En este ejemplo, veríamos cómo se puede crear la factura de venta en función del pedido de venta anterior.
+
+El código para la creación de instancias de documentos y la definición de propiedades es muy similar.
+
+En el cuadrado rojo, puede ver las diferencias en el nivel del objeto secundario de las líneas del documento. La propiedad BaseType especifica el tipo de documento, que en nuestro caso debería ser orden de venta.​
+
+El ID del documento de origen debe registrarse en la propiedad BaseEntry.​
+
+Entonces es posible establecer el número de línea en el documento de origen.​
+
+El resto del código ya se explicó en el ejemplo anterior.
+
+--
+
+.-Otros objetos comerciales: usuarios y registro de acceso
+  Other Business Objects: Users and Access Log​
+
+Usuarios es un objeto comercial que representa la tabla de usuarios de la aplicación SAP Business One.​
+
+La tabla de usuarios incluye la lista de usuarios, detalles de inicio de sesión y autorizaciones.
+
+Este objeto le permite:​
+
+Actualizar un registro de socio comercial
+
+Añadir usuarios a la lista de usuarios
+
+Recuperar los datos de un usuario por su clave
+
+Actualizar los datos de un usuario
+
+Eliminar usuarios de la lista de usuarios
+
+Guarde el objeto en formato XML.​
+
+SAP Business One tiene los detalles de acceso con respecto a las actividades del usuario. Esta característica también está expuesta para DI API en el objeto UserActionRecord.​
+
+El objeto UserActionRecord muestra los detalles de acceso de los usuarios que iniciaron y cerraron sesión con el cliente SAP Business One o DI API.​
+
+UserActionRecord es un objeto secundario del objeto de usuario.​
+
+En el registro, los administradores del sistema y los auditores del sistema pueden verificar las propiedades de los usuarios y los estados de acceso en cualquier momento, de modo que puedan verificar que los usuarios en el sistema se administran correctamente y que el sistema ofrece un nivel de seguridad adecuado.
+
+--
+
+.-Working with XML: Motivation​
+
+La DI API también proporciona las funciones para trabajar con el lenguaje de marcado extensible (XML).
+
+Usar XML para intercambiar información tiene muchas ventajas: ​
+
+La información codificada en XML es fácil de leer y comprender tanto para humanos como para máquinas.
+
+Casi todos los sistemas pueden trabajar con datos XML
+
+Definido por el World Wide Web Consortium (W3C), la principal organización internacional de estándares
+
+Permite el intercambio de datos a gran escala entre la base de datos de la empresa SAP Business One y sistemas externos
+
+--
+
+.-Working with XML: Relevant Methods and Properties​
+
+Company object​
+
+oCompany.GetBusinessObjectFromXML (FilePath_OR_XMLString, Index)​
+
+oCompany.GetXMLelementCount (FilePath_OR_XMLString)​
+
+oCompany.GetXMLobjectType (FilePath_OR_XMLString, Index)​
+
+oCompany.GetBusinessObjectXmlSchema (ObjectType) ​
+
+​
+
+Business objects​
+
+oBusinessObject.SaveXML (FilePath_OR_XMLString)​
+
+oBusinessObject.Browser.ReadXML (FilePath_OR_XMLString)​
+
+Use ReadXML to update an existing object​
+
+​
+
+XML export type – specifies the types for exporting data, e.g. to export read-only data​
+
+oCompany.XmlExportType = SAPbobsCOM.BoXMLExportTypes.xet_ExportImportMode​
+​
+
+Working with XML as an XML string (not as an XML file)​
+
+oCompany.XMLAsString = True​
+
+
+
+El método UpdateFromXML se proporciona para manipular child objects. Está diseñado para simplificar sus procesos de actualización, eliminación y creación.​
+
+Si desea cambiar el contenido del objeto secundario en un solo paso, basta con guardar el contenido del objeto secundario actual como XML, realizar los cambios necesarios y llamar al método UpdateFromXML.
+
+Sin embargo, no puede usar este método para insertar una nueva fila entre filas existentes, porque este método actualiza el objeto secundario según el orden de las filas en el archivo XML en lugar de la propiedad LineNum.
+
+Si desea agregar una nueva fila(row), simplemente agréguela como la última fila.
+
+Este método está expuesto para items, business objects, documents y product tree objects.
+
+--
+
+.-Trabajar con XML: eliminar línea/subobjeto por XML​
+  Working with XML: Delete Line/Sub-Object by XML​
+
+Method UpdateFromXML​
+
+​
+Recibe y procesa el contenido XML.​
+
+Puede eliminar líneas de subobjetos(sub-object) del objeto a través del archivo XML.
+
+​
+Available for​:
+
+Items object​
+
+BusinessPartners object​
+
+Documents object​
+
+ProductTrees object​  
+
+
+La DI API también proporciona las funciones para trabajar con el Extensible Markup Languaje (XML).
+
+Usar XML para intercambiar información tiene muchas ventajas: ​
+
+La información codificada en XML es fácil de leer y comprender tanto para humanos como para máquinas.
+
+Casi todos los sistemas pueden trabajar con datos XML
+
+Definido por el World Wide Web Consortium (W3C), la principal organización internacional de estándares
+
+Permite el intercambio de datos a gran escala entre la base de datos de la empresa SAP Business One y sistemas externos
+
+--
+
+.-Trabajando con XML: Ejemplo – SaveXML​
+
+#
+ 'First connect to database…​
+
+
+
+ Dim oBP As SAPbobsCOM.BusinessPartners = _​
+
+    oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oBusinessPartners)​
+
+ ​
+
+ oCompany.XmlExportType = SAPbobsCOM.BoXmlExportTypes.xet_ExportImportMode​
+
+
+
+ …​
+
+
+
+ If (oBP.GetByKey("C20000“) = False) Then​
+   MessageBox.Show("Failed to find the business partner")​
+ Else​
+   oBP.SaveXml ("c:\temp\BP_" + oBP.CardCode + ".xml")​
+ End If​
+#
+
+Puede guardar datos de business objects en formato XML para usarlos fuera de SAP Business One.​
+
+Para crear un archivo XML, llame al método SaveXML del business object correspondiente.​
+
+En el ejemplo, puede ver la línea donde la propiedad XmlExportType se cambia a ExportImportMode.​
+
+Este cambio garantiza que solo las propiedades que tienen el tipo de propiedad de lectura y escritura se exportan desde el registro de datos maestros del socio comercial existente.
+
+Esto simplifica el proceso de importación para importar el archivo XML a otra base de datos de empresa de SAP Business One.
+
+--
+
+.-Trabajar con XML: ejemplo: obtener un socio comercial de XML
+  Working with XML: Example – Get Business Partner from XML​
+
+#
+ Dim sFileName As String = "c:\temp\BPs.xml“​
+
+ Dim lEcount, ii As Long​
+
+ 'Get the number of Business object in the file ...​
+ lEcount = oCompany.GetXMLelementCount(sFileName)​
+
+
+ 'Loop through the objects; when finding the first BusinessPartner ​
+
+ 'object: load it, add it to the DB.​
+
+ For ii = 0 To lEcount–1 ​
+   If oCompany.GetXMLobjectType(sFileName, ii) = _​
+
+ SAPbobsCOM.BoObjectTypes.oBusinessPartners Then​
+
+
+     ‘”Read” the Business object data into the object…​
+
+     ‘Please note:​
+
+     ‘If the format is not OK you might run into an exception!​
+     oBP = oCompany.GetBusinessObjectFromXML(sFileName, ii)​
+
+
+     iRetVal = oBP.Add()​
+     ‘…handle error…​
+
+   End If​
+ Next ii​  
+#
+
+En el siguiente ejemplo, importaremos el registro(record) de master data del business object el archivo XML.​
+
+Podemos utilizar varios métodos del business object para acceder al tipo y la cantidad de elementos en el archivo XML:​
+
+GetXMLelementCount devuelve el número de elementos en el archivo XML.
+
+GetXMLobjectType recupera el tipo de elemento de un elemento específico en el archivo XML.
+
+GetBusinessObjectFromXML devuelve los atributos de un business object específico.
+
+--
+
+.-Manejo de transactions: descripción general
+  Transaction Handling: Overview​
+
+The Data Interface API supports two different types of transactions:​
+
+-Single Transaction (default)​
+
+Cada operación de datos realizada en un business object inicia un transaction.
+
+Según el resultado (éxito o fracaso), el sistema emite automáticamente una confirmación o una reversión.
+
+
+-Global Transaction​
+
+Permite realizar varias operaciones de datos y luego una confirmación o reversión completa según criterios específicos.
+
+Si alguna de las operaciones de datos falla, el transaction global se revertirá por completo.
+
+El inicio y el final de un transaction global se pueden gestionar utilizando el objeto Company:​
+
+oCompany.StartTransaction()​
+Boolean oCompany.InTransaction​
+oCompany.EndTransaction([wf_RollBack / wf_Commit])​
+
+
+Tenemos dos alternativas para usar transactions en SAP Business One DI API.​
+
+El valor predeterminado es single tranaction, que implica una sola operación de business object.
+
+La global transaction es una colección de varias single transactions.
+
+Cuando se realiza una operación de datos en un business object, se inicia un transaction. La base de datos de SAP Business One utiliza transactions para mantener la coherencia de los datos(keep the data consistent).​
+
+Si la operación tiene éxito, se emite un commit y se guardan los datos.​
+
+Si la operación falla, se inicia una operación de reversión(rollback operation) y se descartan los datos. Si la operación de datos se realiza en un solo business object, todo esto se realiza automáticamente.
+
+Si desea realizar acciones de base de datos que deben dividirse en varios pasos, puede utilizar el método StartTransaction para iniciar una serie de operaciones.​
+
+Cuando se inicia un global transaction con StartTransaction, los business objects utilizan esta global transaction. Si uno de los business objects falla durante cualquier proceso, el transaction finaliza y se inicia una operación de reversión(rollback operation) automático. Si el transaction es exitosa, debe usar el método EndTransaction para liberar los registros bloqueados(locked records) y permitir que otros usuarios accedan a ellos.
+
+Utilice la propiedad "InTransaction" si no está seguro del estado del transaction.
+
+--
+
+.-Manejo de transactions: diagrama de flujo de transactions globales
+  Transaction Handling: Flow Chart of Global Transactions​
+
+Examinemos el diagrama de flujo de un global transaction.
+
+Todo comienza llamando al método StartTransaction. Luego puede realizar la tarea requerida, como crear el cliente o la factura.
+
+Si todas las operaciones se realizan correctamente, puede decidir si el global transaction debe confirmarse o revertirse. Luego debe cerrar el transaction llamando al método EndTransaction.
+
+Si una operación falla, por ejemplo, no se puede crear el cliente, la DI API ejecuta la reversión automática y el transaction finaliza.
+
+--
+
+.-Cómo recibir notificaciones sobre cambios en Business Objects
+  How to Get Notified on Changes in Business Objects​
+
+-Challenge ​
+
+There are no DI API data-driven notifications (only FormData events in the UI API – see UI API presentation)​
+
+Adding SQL triggers at the database level is not permitted!​
+
+
+-Solution​
+
+Enable the Transaction Notification in SAP Business One (Administration > System Initialization > General Setting > Service).​
+This can be achieved by setting the EnableTransactionNotification property on the CompanyInfo object.​
+
+Insert the required object to the <companyDB>.CTNS table.​
+
+Consume the events from SBOCOMMON.SEVT​
+
+After handling the events, clean up the entry from SBOCOMMON.SEVT​
+
+
+-Important remarks:​
+
+The Integration Framework for SAP Business One can use the SBOCOMMON.SEVT table as well. ​
+The table is cleaned automatically by the EventSender service.
+
+
+
+En la siguiente diapositiva veremos cómo podemos recibir notificaciones sobre cambios de datos.​
+
+Desafortunadamente, no hay una notificación basada en datos integrada en la DI API y no se permite la creación de activadores de base de datos.
+
+Veamos cómo podemos resolver este problema:
+
+La propiedad EnableTransactionNotification debe estar habilitada en el nivel del business object
+
+Los objetos monitoreados deben insertarse manualmente en la tabla CTNS de la base de datos de la empresa SAP Business One. Actualmente no existe una interfaz de usuario en Business One para configurar las entradas, por lo que debe configurarse manualmente.
+
+Los eventos se pueden consumir desde la tabla SBOCOMMON.SEVT.​
+
+Luego, el evento debe limpiarse manualmente de la tabla SBOCOMMON.SEVT.​
+
+Cualquier problema de sincronización o problema con las credenciales deberá ser considerado cuidadosamente. Por lo general, registrar los "eventos" entrantes y procesarlos de forma asíncrona debería resolver ese problema, tal como se maneja en el marco de integración para SAP Business One.
+
+Puede consultar el artículo SBO_SP_TransactionNotification:
+https://blogs.sap.com/2013/10/15/implementing-sbosptransactionnotification-of-sap-business-one-version-for-sap-hana/
+
+--
+
+.-Objetos de negocio: ejercicio
+  Business Objects: Exercise​
+
+Es hora de empezar los ejercicios. Hay 3 ejercicios para completar para la unidad actual.​
+
+En el primer ejercicio, trabajamos con documentos de marketing para verificar cómo se puede utilizar el objeto comercial.​
+
+El segundo ejercicio trata sobre la manipulación de datos XML.
+
+En el ejercicio final, veremos cómo se puede utilizar el global transaction.​
+
+Es hora de empezar los ejercicios. Hay 3 ejercicios para completar para el tema actual.
+
+En el primer ejercicio, trabajamos con documentos de marketing para verificar cómo se puede utilizar el objeto comercial.​
+
+El segundo ejercicio trata sobre la manipulación de datos XML.
+
+En el ejercicio final, veremos cómo se puede utilizar el transaction global.
+
+--
+
+
+DUDAS: _ me he quedado por la diap 20
+
+‘Write changes to DB now…!​
+
+   lRetCode = oBP.Update()​
+
+   If lRetCode <> 0 Then​
+
+    …​
+
+   End If​
+
+

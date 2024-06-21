@@ -1,0 +1,53 @@
+#
+ 'First connect to database (see Log on sample)​
+
+ '…​
+
+ ‘Variables:​
+
+ Dim oBP As SAPbobsCOM.BusinessPartners = _​
+
+     oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oBusinessPartners)​
+
+ Dim lRetCode As Integer​
+
+
+
+ If oBP.GetByKey(“C08154711”) = True then ‘here we use an existing record…​
+
+  ‘First line is always prepared (in any business object that has lines…)​
+
+   oBP.ContactEmployees.Name = "John Cash“​
+
+
+
+   ‘Prepare / declare 2nd line… (automatically positions on new line)​
+
+   oBP.ContactEmployees.Add()  ‘No in DB here – therefore will work always…​
+
+   oBP.ContactEmployees.Name = “John Walker“​
+
+
+
+   ‘Please note: In case you need to position on particular line…​
+
+   ‘oBP.ContactEmployees.SetCurrentLine(<0-based line no.>)​
+
+
+
+   ‘Write changes to DB now…!​
+
+   lRetCode = oBP.Update()​
+
+   If lRetCode <> 0 Then​
+
+    …​
+
+   End If​
+
+ Else​
+
+   MessageBox.Show(„Business Partner C08154711 not found!“)​
+
+ End if
+#

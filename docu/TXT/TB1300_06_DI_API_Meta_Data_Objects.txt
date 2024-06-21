@@ -1,0 +1,329 @@
+##################################
+TB1300_06_DI_API_Meta_Data_Objects #
+----------------------------------
+
+.-Metadata Objects: Topic Objectives​
+
+Después de completar este tema, podrá:​
+
+Crear tablas definidas por el usuario
+
+Crear campos definidos por el usuario
+
+Agregar UserKeys a las tablas definidas por el usuario
+
+
+.-Metadata Objects: Definition​
+
+Los campos, tablas y claves definidos por el usuario son únicos y creados y personalizados por el cliente.
+
+Las tablas y campos están completamente integrados en la aplicación SAP Business One.​
+
+Los campos y tablas definidos por el usuario pueden ser la base para funciones personalizadas adicionales.
+
+Los datos que se guardan en los campos y tablas definidos por el usuario se pueden usar en informes, consultas y diseños de documentos.
+
+Además, los campos definidos por el usuario se pueden buscar y se pueden usar para buscar registros que contengan los datos en el campo, al igual que otros campos que se pueden buscar en SAP Business One.
+
+Las claves definidas por el usuario se utilizan para crear claves de base de datos adicionales, lo que mejora el rendimiento de las tablas definidas por el usuario.
+
+
+.-Metadata Objects: User-Defined Tables – Scope​
+
+Las tablas definidas por el usuario (UDT) le permiten definir sus propias tablas dentro de una base de datos de empresa de SAP Business One. Luego, los campos definidos por el usuario (UDF) se pueden agregar a un UDT.
+
+Dos campos que se agregan automáticamente de forma predeterminada cuando agrega un nuevo UDT: Código y Nombre.​
+
+El campo Código se utiliza para la clave principal. No tengo idea de lo que se supone que significa este fragmento de oración, así que lo omití.
+
+​
+.-Metadata Objects: Add User-Defined Tables​
+
+Add User-Defined Tables via Tools  Customization Tools  User-Defined Tables - Setup ​
+
+Object Types:​
+
+ *No Object​
+
+ *No Object with Auto. Increment​
+
+ *Master Data​
+
+ *Master Data Rows​
+
+ *Document​
+
+ *Document Rows​
+
+
+Puede crear UDT en la ventana Tablas definidas por el usuario - Configuración. Puede acceder a esta ventana desde la barra de herramientas  Herramientas  Herramientas de personalización.​
+
+Ahora ingresa un nombre de tabla y una descripción. Cuando el sistema genera la tabla, agrega un signo de "arroba" (@) al nombre de la tabla. Si ingresa XX_TST como el nombre de la tabla, por ejemplo, el nombre de la tabla de la base de datos será @XX_TST.​
+
+Hay 6 tipos de objetos entre los que debe elegir. Cuando se trabaja con objetos definidos por el usuario, es esencial trabajar con los tipos de objetos de datos maestros o relacionados con documentos. Si solo desea almacenar datos sin procesar en la tabla, que no formarán parte de un objeto, elija "Sin objeto" o "Sin objeto con Auto". Incrementar” tipo de objeto.​
+
+Tenga en cuenta que puede eliminar un UDT utilizando el menú contextual siempre que:​
+
+La tabla no se utiliza para un objeto definido por el usuario.
+
+La tabla no se usa (vincula) en un campo definido por el usuario.​
+
+
+.-Metadata Objects: UserTablesMD​
+
+Use the UserTablesMD object to create a user defined table via DI API​
+
+#
+ 'Object variable​
+
+ Dim oUTables As SAPbobsCOM.UserTablesMD​
+
+ 'Create Instance of UserTablesMD object  ​
+
+ oUTables = oCompany.GetBusinessObject(oUserTables)​
+
+
+
+ 'Check whether table already exists    ​
+
+ If oUTables.GetByKey(“TB1_Table”) Then​
+
+   oUTables = Nothing​
+
+   Exit Sub​
+
+ Else​
+
+   oUTables.TableName = “TB1_Table”​
+
+   oUTables.TableDescription = “TB1300 test table”​
+
+   lRet = oUTables.Add()​
+
+ End If​
+
+
+
+ ' IMPORTANT: Only one (“handle to a”) user table or field object should be “alive”​
+
+ ' at the same time!!!​
+
+ 'In .NET call this first: ​
+
+ System.Runtime.InteropServices.Marshal.ReleaseComObject(oUTables) ​
+
+ ‘In .NET set object variable to Nothing… ​
+
+ oUTables = Nothing
+#
+
+El objeto UserTablesMD le permite administrar tablas definidas por el usuario.
+
+Utilice su espacio de nombres de SAP como prefijo para el nombre de la tabla.​
+
+Si ingresa el nombre TB1_Table, el sistema asigna automáticamente el nombre @TB1_Table.​
+
+Tenga en cuenta:​
+
+Debe llamar a ReleaseComObject en .NET para asegurarse de que el objeto con el que trabajó se publique sincrónicamente.​
+
+GC.Collect() liberará el objeto algún tiempo después y solo UN objeto de metadatos puede estar activo a la vez. Compruebe qué sucede si este no es el caso...
+
+
+.-Metadata Objects: Add User-Defined Fields to Tables​
+
+Los campos definidos por el usuario se pueden agregar tanto a las tablas existentes de SAP Business One como a las tablas definidas por el usuario.
+
+Seleccione la entrada del objeto de la tabla en la ventana Campos definidos por el usuario: administración y elija Agregar para crear una nueva UDF.
+
+
+.-Metadata Objects: Defining a User-Defined Field​
+
+Cuando elige Agregar, se abre la ventana Datos de campo. Aquí ingresa el título del campo, que se utilizará para el nombre del campo (máximo 18 caracteres) y una descripción (máximo 30 caracteres).​
+
+El Título debe ingresarse en inglés, ya que todos los nombres de los campos de la tabla de la base de datos están en inglés.​
+
+El sistema crea un campo de base de datos en este formato: U_<título>. Dado que la descripción se muestra en la pantalla, debe definirse en el idioma local.​
+
+Puede seleccionar entre varios tipos de UDF, como alfanumérico, fecha y hora.​
+
+La figura muestra todos los tipos posibles y sus estructuras que determinan el formato del campo. Los tipos Unidades y Sumas, por ejemplo, pueden tener una estructura de precio, suma, unidad o cantidad. Los campos que representan estructuras de fecha se muestran como todos los demás campos de fecha en el sistema y permiten la misma entrada. El contenido de los campos de tipo General, que permiten colocar archivos e imágenes, se almacena en las carpetas Imágenes o Adjuntos, respectivamente, que se especifica en la ventana Configuración general. Después de agregar un campo, no puede cambiar su tipo.
+
+
+.-Metadata Objects: Linking User-Defined Fields​
+
+Es posible vincular un campo definido por el usuario a una entidad existente. Los registros de objeto del sistema, tabla definida por el usuario y objeto definido por el usuario, por ejemplo, se pueden asignar a un campo definido por el usuario.
+
+Esto ayuda a crear puentes personalizados entre objetos en la base de datos de SAP Business One.
+
+Si un campo definido por el usuario que utiliza la función de vinculación de entidades, contiene el valor de clave principal del objeto vinculado. Tenga en cuenta que las claves foráneas y otras restricciones no se pueden utilizar actualmente.
+
+El tipo de campo se establece automáticamente en alfanumérico y la longitud se establece en 30 caracteres.
+
+La lista de los objetos del sistema disponibles está codificada de forma rígida. Esta lista la mantiene el núcleo digital de SAP Business One. No hay opción para establecer el enlace a una entidad del sistema que no está disponible en el núcleo digital.
+
+​
+.-Metadata Objects: Marketing Document Row and Header Fields ​
+
+Puede agregar campos tanto al área del encabezado como a las filas de los documentos de marketing.​
+
+Cuando agrega un campo definido por el usuario a un objeto de documento de marketing, el nuevo campo se agrega a todos los tipos de documentos de marketing, incluidos todos los tipos de documentos de compras y ventas, así como algunos documentos de inventario, como la entrada y la salida de mercancías.
+
+
+.-Metadata Objects: User-Defined Fields – Header Level ​
+
+Cuando agrega campos definidos por el usuario en el nivel de encabezado, los nuevos campos aparecen en una ventana separada, que se coloca a la derecha de la ventana del documento existente de forma predeterminada.​
+
+Esta ventana no es visible inmediatamente. Para abrir esta ventana, seleccione Ver > Campos definidos por el usuario en la barra de menú superior o utilice la combinación de teclas Ctrl+Mayús+U. Puede cambiar la posición de esta ventana a la izquierda o al final de la ventana existente.
+
+Si los campos definidos por el usuario no se utilizan en un documento de marketing, la nueva ventana puede permanecer cerrada.
+
+
+.-Metadata Objects: User-Defined Fields – Row Level ​
+
+Cuando agrega un campo a nivel de fila, el sistema agrega este campo como una columna adicional en la fila. El campo es visible y activo por defecto.​
+
+Puede cambiar esta configuración o mover el campo a una nueva posición dentro de la fila utilizando la configuración de formulario estándar.​
+
+​
+.-Metadata Objects: UserFieldsMD​
+
+Use the UserFieldsMD object to create user defined fields​
+
+#
+ 'Object variable​
+
+ Dim oUFields As SAPbobsCOM.UserFieldsMD​
+
+
+
+ 'Create Instance of UserTablesMD object  ​
+
+ oUFields = oCompany.GetBusinessObject(oUserFields)​
+
+
+
+ 'Add field... "Manufacturer"​
+
+ oUFields.TableName = “@TB1_Table”​
+
+ oUFields.Name = "Make"​
+
+ oUFields.Description = "Manufacturer"​
+
+ oUFields.Type = db_Alpha​
+
+ oUFields.EditSize = 20​
+
+ lRet = oUFields.Add()​
+
+
+
+ ‘ IMPORTANT: Only one (“handle to a”) user table or field object should be “alive”​
+
+ ‘ at the same time!!!​
+
+ In .NET call this first: ​
+
+ System.Runtime.InteropServices.Marshal.ReleaseComObject(oUFields)​
+
+ ​
+
+ ‘In .NET and VB6 set object variable to Nothing… ​
+
+ oUFields = Nothing​
+#
+
+El siguiente ejemplo de código muestra cómo agregar un campo definido por el usuario.
+
+UserFieldsMD es un objeto comercial que le permite administrar campos definidos por el usuario en tablas definidas por el usuario y del sistema.
+
+Después de crear un nuevo campo definido por el usuario en .NET, debe liberar el objeto ejecutando una línea de código donde el objeto es una referencia al objeto UserFieldsMD.
+
+La DI API solo permite una instancia de objeto UserFieldsMD. Esto mantiene la integridad de los datos al evitar cualquier manipulación de un objeto comercial mientras se modifican sus propiedades.
+
+
+.-Metadata Objects: UserKeys Object​
+
+El objeto UserKeysMD le permite administrar claves definidas por el usuario de tablas definidas por el usuario.
+
+Una tabla definida por el usuario contiene una clave principal predeterminada que consta de la columna Código. Utilice el objeto UserKeysMD si desea agregar claves secundarias a las tablas de usuarios.
+
+En teoría, se puede crear una clave definida por el usuario aplicando el siguiente proceso:
+
+Defina el nombre de la clave para la propiedad KeyName
+
+Luego establezca el nombre de la tabla en la propiedad TableName
+
+Establezca el campo definido por el usuario en el objeto secundario Elementos
+
+Puede usar la propiedad Unique para determinar si la clave es única o no.
+
+Finalmente, llama al método Add.
+
+
+.-Metadata Objects: UserKeysMD​
+
+Use the UserKeysMD object to create user defined keys​
+
+#
+ 'Object variable​
+
+   Dim oUKeys As SAPbobsCOM.UserKeysMD​
+
+
+
+ 'Create Instance of UserTablesMD object  ​
+
+   oUFields = oCompany.GetBusinessObject(oUserKeys)​
+
+
+
+
+
+   oUKeys.TableName = "BE_MyTable"​
+
+   oUKeys.KeyName   = "BE_MyKey1"​
+
+
+ 'Set the first column's alias (No Add method for the first element)​
+   oUKeys.Elements.ColumnAlias = "FieldName1"​
+
+
+ 'Set the second column's alias​
+   oUKeys.Elements.Add()    ' Add an item to the Elements collection ​
+
+   oUKeys.Elements.ColumnAlias = "FieldName2"​
+
+
+ 'Determine whether the key should be unique or not​
+   oUKeys.Unique = tYES​
+
+
+ 'Add the key​
+   lRet = oUKeys.Add()​
+
+
+
+ 'IMPORTANT: Only one handle to a user table or field or key object ​
+
+ 'should be alive at the same time​
+#
+
+En la diapositiva anterior, vimos cómo crear una clave definida por el usuario en teoría. Ahora puede ver cómo se ha implementado esta teoría en este código de muestra.
+
+Después de instanciar el objeto comercial UserKeysMD, se definen las propiedades TableName y KeyName. Al usar los objetos secundarios de Element, se agregan múltiples campos definidos por el usuario a la colección de claves.
+
+Tenga en cuenta que solo estamos manejando un objeto clave en un momento dado. Después de haber realizado los cambios necesarios en el objeto UserKeysMD, el objeto se libera inmediatamente.​
+
+
+.-Metadata Objects: Exercise​
+
+En el ejercicio de esta unidad, practicará la creación de tablas definidas por el usuario con campos definidos por el usuario. También hay un ejercicio práctico para crear registros para tablas definidas por el usuario.
+
+
+
+
+
+
+

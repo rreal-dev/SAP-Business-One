@@ -1,0 +1,509 @@
+#######################
+TB1300_01_Introduction #
+--------------------------
+
+.-Agenda
+
+Modelo de implementación y Tecnología
+
+El SDK de SAP Business One
+
+Introducción a DI API
+
+Introducción a la capa de servicio(Service Layer)
+
+Introducción a la API de la interfaz de usuario(UI API)
+
+--
+--------------------------------------
+Modelo de implementación y Tecnología
+--------------------------------------
+
+.-Soluciones de modo de compatibilidad: HANA y MSSQL
+
+Este diagrama ilustra la solución, donde todos los componentes 
+están ubicados en un entorno.
+
+La solución complementaria puede usar DI y la API de UI en entornos 
+de base de datos de Microsoft SQL y SAP HANA.
+
+El complemento(add-on) se puede ampliar con la funcionalidad para operar con datos 
+utilizando también el Service Layer de SAP Business One. 
+El Service Layer solo puede funcionar para SAP Business ONE, versión para SAP HANA.
+
+En general, solo puede haber una única versión del complemento(add-on) que funcione 
+en estas plataformas compatibles.
+
+--
+
+.-Soluciones estrechamente acopladas: solo HANA
+
+Una solución estrechamente acoplada(tightly coupled solution) significa que la extensibilidad está fuertemente conectada con el entorno y se implementa como una extensión de bases HTML sobre el motor SAP HANA XS engine.
+
+Este diagrama muestra un módulo de un complemento(add-on) estrechamente acoplado.
+
+La solución consume los datos de SAP Business One utilizando la tecnología del
+Service Layer de SAP Business One.
+
+La solución puede ser consumida por cualquier tipo de dispositivo utilizando 
+un navegador web, en dispositivos móviles y de escritorio.
+
+--
+
+.-Soluciones débilmente acopladas: solo HANA
+
+En el modelo débilmente acoplado, la solución se ejecuta en SAP Cloud Platform 
+e interactúa con SAP Business One utilizando las tecnologías de capas de servicio
+(service Layers).
+
+Este rey de la solución es completamente independiente de la gestión del ciclo en 
+vivo de SAP Business One.
+
+En la Nube, la solución cuenta con una amplia gama de tecnologías para comunicarse 
+con los demás servicios externos.
+
+La solución débilmente acoplada(loosely coupled solution) se ejecuta en un entorno separado(separated environment), mientras que el núcleo digital (también conocido como SAP Business One) sigue siendo estándar, con poca o ninguna personalización.
+
+--
+
+.-Implementaciones de soluciones de socios(Parter Solution)
+
+Por lo general, en la vida real, la arquitectura es más compleja que la que vimos 
+en las diapositivas anteriores.
+
+La implementación del cliente requiere varias extensiones basadas en el modelo comercial
+exacto y las ofertas de complementos(Add-On) o Solution disponibles para los socios.
+
+Si el cliente requiere alguna función adicional para el núcleo digital, 
+se logra mediante el uso de soluciones de compatibilidad además de la API 
+de la interfaz de usuario(UI API), la DI API o el servicio de Service Layer como
+una interacción con la UI API.
+
+La mejor opción para ejecutar los servicios web locales es implementar la solución de 
+extensión de forma estrechamente acoplada, directamente en SAP HANA XS Engine.
+
+Cuando se debe realizar la comunicación con servicios externos, la solución 
+débilmente acoplada puede ser la mejor opción (como pasarelas de pago, 
+empresas de entrega, servicios de mapas, etc.)
+
+--
+
+.-SAP Business One: plataforma empresarial
+
+Sap Business One está cambiando del modelo de sistema ERP al modelo Business Platform. 
+Este modelo puede conectar múltiples entidades e integrarlas en un solo sistema.
+
+SAP Business One se puede implementar en la nube o en las instalaciones.
+
+Ofrece dos tipos de entornos de base de datos, Microsoft SQL Server y SAP HANA Database. 
+
+El último viene con tecnología en memoria para fusionar el requisito analítico y 
+transaccional en un solo lugar.
+
+SAP Business One ofrece varias alternativas para ampliar la solución actual-
+SDK, marco de integración(Integration Framework) y capa de servicio(Service Layer).
+El Service Layer solo está disponible para SAP HANA.
+
+Además de la capa de extensibilidad, es posible crear varias soluciones, 
+como complementos de terceros(third-party add-ons), aplicaciones móviles, 
+aplicaciones de análisis e informes.
+
+También puede realizar alguna integración adicional con productos SAP y no SAP.
+
+--
+
+.-SAP Business One: tecnología e interfaz
+
+SAP Business One ha implementado una arquitectura de dos capas(two-layer). 
+El sistema se basa en una base de datos HANA/Microsoft SQL Server donde los datos 
+se almacenan de forma centralizada. La lógica empresarial se procesa principalmente 
+en el software del cliente (cliente pesado o fat client).
+
+En detalle, el software del cliente consta de una interfaz gráfica de usuario 
+y las clases de objetos comerciales que se conectan a la base de datos.
+
+Hay varias capacidades de integración integradas(built-in), interfaces y funciones de personalización (consulte "Adaptación", "Integración de MS Office" e "Interfaces")
+
+  *Además de todas las capacidades de adaptación accesibles para los clientes, 
+   SAP Business One SDK permite a los socios implementar una solución que amplía 
+   SAP Business One utilizando API y otras funciones.
+
+  *El servidor DI, por ejemplo, permite a los socios utilizar los datos de SAP Business     One en un navegador sin necesidad de instalar ningún componente de SAP Business One 
+   en el cliente o en el servidor de aplicaciones de la aplicación basada en web.
+
+  *La característica UDO es un sueño adicional para facilitar la creación de 
+   funcionalidades adicionales dentro de SAP Business ONE
+
+Las licencias también se gestionan de forma centralizada. Los socios pueden utilizar el mecanismo para sus propios fines.
+
+--
+--------------------------
+El SDK de SAP Business One
+--------------------------
+
+.-Introducción a SAP Business One SDK: Objetivos del tema
+
+Los objetivos del tema actual son:
+
+-Describir el propósito y los componentes del SDK
+
+-Explicar en alto nivel sobre los paquetes y licencias SDK
+
+-Encuentre más información y use la comunidad para hacer preguntas y obtener respuestas
+
+--
+
+.-SAP Business One SDK - Motivación
+
+Entonces, ¿por qué usar el SDK?
+
+El SDK tiene poderosas capacidades de personalización. Puede cambiar el comportamiento 
+del sistema existente y puede modificar la interfaz de usuario en el cliente de 
+SAP Business One utilizando la tecnología API de la interfaz de usuario.
+
+Los cambios relacionados con los datos se pueden realizar utilizando DI API y Service Layer.
+
+Sin embargo, no todos los objetos se pueden cambiar usando estas tecnologías, 
+por eso no puede responder a todos los requisitos.
+
+El código fuente de SAP Business One no es accesible, no es un software de código abierto, donde puede cambiar el código fuente directamente.
+
+SAP ofrece SAP Business One como un núcleo digital.
+El SDK se puede utilizar para personalizar el núcleo digital. 
+El SDK garantiza la integridad de los datos y el aspecto perfecto de su solución.
+
+Puede usar varias soluciones de complementos creadas por SAP, pero si la implementación
+requiere algunas características específicas de la industria, entonces puede usar
+el SDK para integrarlo al núcleo digital. 
+
+--
+
+.-SDK de SAP Business One: descripción general de los componentes
+
+En la diapositiva actual, puede ver el diagrama arquitectónico básico para 
+los componentes de SAP Business One relacionados con el SDK.
+
+Las diferentes interfaces de programación de aplicaciones (API) incluidas en el 
+SDK utilizan estándares abiertos de Microsoft que permiten el acceso a una gran 
+cantidad de objetos comerciales proporcionados por SAP Business One.
+
+Los (Runtimes) de la API se instalan con la aplicación cliente de SAP Business One,
+excepto para el servidor DI, que forma parte de la instalación de las herramientas 
+del servidor de SAP Business One.
+
+Puede acceder a SAP Business One
+
+ *a nivel de datos comerciales a través de la API de interfaz de datos (DI API). 
+  La mayoría de los objetos comerciales de SAP Business One están expuestos en esta API. 
+  Se puede acceder a ellos mediante programas externos.
+  Si prefiere usar Java, use "Java Connector" para acceder a DI API.
+
+ *a nivel de datos comerciales a través del servidor de interfaz de datos (DI). 
+  DI Server es un servicio DCOM que se ejecuta en el servidor SAP Business One y 
+  acepta datos XML empaquetados en "sobres" SOAP (Simple Object Access Protocol).
+
+ *a nivel de interfaz de usuario: la API de interfaz de usuario (UI API) brinda acceso 
+  a una aplicación en ejecución donde puede agregar o modificar formularios y              proporcionar sus propios controladores de eventos(event handlers) para influir           activamente en la lógica comercial existente.
+
+ *Además, puede definir sus propios objetos comerciales, objetos definidos por el usuario
+  (UDO), que se unen a la colección de objetos comerciales de SAP Business One.
+
+--
+
+.-SDK de SAP Business One - Terminología y empaquetado
+
+Instalación SDK
+
+ *Development package for partners: incluye ayuda SDK, ejemplos de código, 
+  herramientas y SAPBusinessOneSDK.dll
+
+Runtime:
+
+ *Solo hay un Runtime disponible para desarrollo y uso productivo.
+
+ *Los Runtime (DI API + UI API) se instalan junto con la aplicación cliente de SAP         Business One.
+
+ *DI API se puede instalar de forma independiente(stand-alone).
+  (paquete instalado por separado disponible)(separate installer package available)
+
+
+Con la instalación de SAP Business One obtendrá:
+
+ *La documentación oficial para SDK, UI API, DI API, referencia de tabla de base de datos
+  y documentos de ayuda adicionales.
+
+ *Ejemplos de código para C# y Visual Basic que demuestran el uso de UI, DI API y DI       Server.
+
+ *Herramientas adicionales como Add-On y Extension Registration Data Generator.
+
+ *SAPBusinessOneSDK.dll: esta es una combinación de las bibliotecas DI API y UI API. 
+  Solo puede agregar esta referencia en lugar de bibliotecas COM separadas en su 
+  solución complementaria.
+
+Solo hay un conjunto de API sin depuración ni lanzamiento.
+
+Al instalar el cliente de SAP Business One, también se instala el tiempo de ejecución
+para la UI y DI API.
+
+Para un uso productivo y de desarrollo, solo se necesita la instalación del cliente
+SAP Business One.
+
+Si desea crear una solución pura basada en DI API, no se requiere la instalación del
+cliente SAP Business One, ya que DI API también tiene una instalación independiente.
+
+--
+
+.-Lo que puede encontrar en SAP Community Network: gente como usted...
+
+En SAP Business One es SAP Community Network, puede plantear su propia pregunta 
+a la comunidad o navegar entre las preguntas y respuestas existentes.
+
+Este es un foro general de SAP Business One que también incluye SDK.
+
+Puede acceder a él a través de sap.com.
+
+Utilice la opción de búsqueda para encontrar los temas relevantes para usted.
+
+La fuente de información más importante para desarrolladores (SAP Community Network):
+https://www.sap.com/community/topics/business-one.html
+
+--
+---------------------
+Introducción a DI API
+---------------------
+
+Introducción a la API de interfaz de datos (API DI): Objetivos del tema
+
+Los objetivos del tema actual son:
+
+ *Explicar qué es DI API en alto nivel
+ *Indique cómo se usa DI API
+ *Explicar sobre DI Server en alto nivel
+
+--
+
+SDK de SAP Business One: API de interfaz de datos/servidor DI
+
+La DI API y el DI Server simplemente permiten la operación relacionada 
+con los datos sobre el entorno de SAP Business One.
+
+Estas son las principales características:
+
+ *Expone las tablas de la base de datos, que están organizadas en la estructura de 
+  objetos y servicios, que contiene los métodos y propiedades.
+
+ *La integridad de datos se realiza en este nivel, ya que ejecuta las mismas validaciones
+  que el cliente SAP Business One.
+
+ *Se puede utilizar para la integración con una solución de terceros(third-party)
+  existente al mapear los datos entre los dos entornos(environments).
+
+ *Puede crear su Add-on utilizando las herramientas de desarrollo compatibles con COM,
+  como Microsoft Visual Studio.
+
+La DI API está diseñada para usarse en el lado del cliente. La aplicación de terceros 
+se conecta a la DI API, que gestiona la comunicación con la base de datos de la empresa.
+
+Este proceso se demuestra en el diagrama con las flechas verdes.
+
+El servidor DI está diseñado para usarse en el lado del servidor. 
+La aplicación web se conecta al servidor DI.
+
+El servidor DI se comunica con la instancia de DI API que se implementa en el lado 
+del servidor y, finalmente, DI API administra la comunicación de bajo nivel con la 
+base de datos de la empresa.
+
+Este proceso se demuestra en el diagrama con las flechas negras.
+
+--
+
+.-API de interfaz de datos: casos de uso
+
+Hay un par de escenarios en los que se activa(is engaged) la API de interfaz de datos:
+
+ *Integración a nivel de datos de aplicaciones existentes: cuando se necesita 
+  leer o escribir datos desde o hacia SAP Business One.
+
+ *Escenarios de importación/exportación de datos que no están cubiertos por las 
+  herramientas de SAP(SAP tools) y donde las funcionalidades de la aplicación SAP          Business One no son suficientes. No obstante, dependiendo de la arquitectura de la       solución general, podría considerar utilizar DI Server.
+
+ *Manejo de datos(handling) en un Add-on que usa UI API (vea la siguiente unidad) más      allá de las capacidades de UI API, por defecto, escribir datos en la base de datos de 
+  SAP Business One requiere el uso de DI API. Aunque otras técnicas pueden ser más         rápidas cuando se trata de leer datos de la base de datos, DI API suele ser una mejor    opción en términos de usabilidad (no es necesario solicitar credenciales adicionales,    etc.). 
+  Además, la coherencia de los datos es mejor, por ejemplo, cuando los datos necesarios 
+  se almacenan en varias tablas.
+
+--
+
+.-SAP Business One SDK - Servidor DI
+
+
+El servidor DI está diseñado para ejecutarse en una máquina servidor y proporciona
+una capa de acceso(access layer) ligera basada en SOAP.
+
+DI Server utiliza el mismo formato XML que DI API, simplemente envuelto en un "sobre" SOAP. Además obtiene una respuesta SOAP.
+
+ *Basado en la tecnología DI API pero actúa como un "Servidor" (as a service)
+
+ *Admite todos los objetos comerciales expuestos por DI API
+
+ *Permite desarrollar soluciones basadas en SOAP(SOAP-based solutions)
+
+ *Potential Solution para operaciones de servicio pesado (por ejemplo, por lotes(batch))
+
+ *Puede admitir un mayor número de clientes que trabajan al mismo tiempo.
+
+
+El servidor DI(DI Server) implementa un mecanismo de agrupación de conexiones para mejorar el rendimiento y la escalabilidad del servidor.
+
+Como el servidor DI es una interfaz basada en SOAP, no limita al cliente a una interfaz COM, sino que permite una amplia gama de posibles tecnologías de cliente.
+
+Hay 2 limitaciones para trabajar con un servidor DI:
+ *Primero, las operaciones de metadatos no son compatibles
+ *Las transacciones globales no son compatibles
+
+Consulte el archivo de ayuda del servidor DI para obtener más detalles.
+
+--
+-------------------------------
+SAP Business One Service Layer.
+-------------------------------
+
+.-Introducción a la capa de servicio(Service Layer): objetivos del tema
+
+Los objetivos del tema actual son:
+
+ *Describir en alto nivel los fundamentos y la arquitectura de la capa de servicio
+
+ *Enumere los puntos clave de OData
+
+--
+
+.-SAP Business One Service Layer - Extensibilidad para Aplicaciones de Próxima Generación
+
+Service Layer está disponible solo para SAP Business One, versión para SAP HANA.
+
+Con esta tecnología, puede crear una nueva generación de extensiones para consumir 
+datos y servicios de SAP Business One.
+
+La capa de servicio utiliza la misma estructura de objetos comerciales que la API DI 
+con pequeñas diferencias de nombres.
+
+Está diseñado para protocolos centrales como HTTP y oData.
+
+Esta arquitectura permite el procesamiento paralelo, lo que significa que es altamente 
+escalable. Es posible que tenga varios servicios de Service Layer para el mismo entorno.
+
+Además, la característica integrada de equilibrio de carga (the built-in Load Balance),
+proporciona alta disponibilidad.
+
+
+El Service Layer proporciona una nueva arquitectura para las extensibilidades. 
+Ahora es más fácil que antes crear soluciones móviles y basadas en web que puedan 
+aprovechar OLTP, OLAP y la plataforma de desarrollo en One Box.
+
+Esto abre una puerta a otros segmentos de clientes e industrias.
+
+--
+
+.-B1 Service Layer - Arquitectura
+
+SAP Business One Service Layer tiene una arquitectura de 3 niveles(3-tier): 
+los clientes se comunican con el servidor web mediante HTTP/OData y el 
+servidor web depende de la base de datos para la persistencia de los datos.
+
+El servidor SAP HANA contiene el motor de la base de datos(database engine),
+donde se encuentran las tablas físicas y el servicio del Service Layer. 
+La comunicación entre ellos se gestiona a través de la tecnología ODBC.
+
+OBServer es el cuerpo de la lógica empresarial que se ocupa del trabajo real, 
+por ejemplo, el cálculo de impuestos, la publicación, etc. Service Layer logra 
+un alto rendimiento y escalabilidad al aprovechar el procesamiento múltiple.(multi-processing)
+
+El DI Core es la interfaz para acceder a los objetos y servicios de SAP Business One, 
+el mismo que utiliza SAP Business One DI API
+
+El administrador de sesiones implementa la permanencia de la sesión(session stickiness), 
+trabajando con el balanceador de carga de la capa de servicio, de modo que la solicitud 
+del mismo cliente sea manejada por el mismo nodo del Service Layer.
+
+--
+
+.-OData - Puntos clave
+
+El OData Parser analiza la URL solicitada y los métodos HTTP (GET/POST/PATCH/DELETE),
+los traduce a los objetos comerciales en los que se operará y llama al método respectivo
+de cada objeto para operaciones de creación/recuperación/actualización/eliminación (CRUD). 
+
+A la inversa, OData Parser también recibe los datos devueltos por el objeto comercial, 
+los traduce a código de retorno HTTP y representantes de datos JSON, y responde 
+al cliente original.
+
+El OData tiene:
+
+ *Canal de comunicación basado en HTTP
+
+ *Acción o métodos uniformes, como GET/POST/PATCH/DELETE
+
+ *Estructura de datos uniforme - Atom y JSON
+
+ *Convenciones uniformes de URL: navegación, filtrado, clasificación, paginación,          uniones, etc.
+
+--
+------------------------
+Introducción a la UI API
+------------------------
+
+.-Introducción a la API de interfaz de usuario (UI API): Objetivos del tema
+
+Los objetivos del tema actual son:
+
+ *Explicar qué es la API de la interfaz de usuario en alto nivel
+
+ *Decir cómo se utiliza la UI API
+
+--
+
+.-SAP Business One SDK - API de interfaz de usuario
+
+Para utilizar la UI API, debe utilizar un entorno de desarrollo y un lenguaje de 
+programación compatibles con la tecnología Microsoft COM (component object model).
+
+La API de la interfaz de usuario no tiene bibliotecas de Java. 
+
+A menudo, también usa DI API y UI API en la misma aplicación Add-On / de terceros
+
+La función UDO es compatible con la UI API
+
+La UI API:
+
+ *Proporciona objetos y métodos para acceder a los objetos de pantalla de la interfaz
+  de usuario
+
+ *Accede a eventos internos del sistema de la interfaz de usuario
+
+ *Permite modificar o agregar menús, ventanas o campos
+
+ *Y proporciona una interfaz de usuario integrada
+
+--
+
+.-UI API: Casos de Uso
+
+Las API de interfaz de usuario generalmente se usan para:
+
+-Lograr una integración perfecta de funcionalidad adicional con SAP Business One 
+ (generalmente solicitada por los clientes), que incluye:
+
+ *conexión a los procesos estándar de SAP Business One
+ *agregar elementos GUI propios en formularios estándar de SAP Business One
+ *agregar formularios propios y conectar los datos correspondientes detrás
+
+-Manipular la funcionalidad estándar de SAP Business One, cuando las opciones estándar 
+ no cumplen con los procesos del cliente, incluyendo:
+
+ *ocultar elementos de la GUI de SAP Business One
+ *bloqueo de eventos de SAP Business One
+
+ --
+
+ 

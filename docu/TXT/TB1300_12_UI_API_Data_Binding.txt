@@ -1,0 +1,338 @@
+###############################
+TB1300_12_UI_API_Data_Binding #
+-------------------------------
+
+.-Data Binding: Topic Objectives​
+
+Después de completar este tema, podrá
+
+Enlazar los datos para el elemento de formulario
+
+--
+
+.-Data Binding: Characteristics and Motivation​
+
+Los DataSources son contenedores de datos, que almacenan los datos dentro de un formulario.​
+
+No están necesariamente vinculados a la base de datos.​
+
+Los DataSources mejoran el rendimiento del formulario, porque la manipulación frecuente de valores de datos no necesariamente requiere actualizaciones frecuentes de la interfaz de usuario.
+
+Algunos elementos, como los elementos Matrix y Grid, que representan los datos tabulares, deben vincularse a una fuente de datos.
+
+Algunos tipos de elementos, como la casilla de verificación, deben vincularse a una fuente de datos o, de lo contrario, no se mostrarían.
+
+--
+
+.-Data Binding: Types of Data Sources​
+
+Hay 3 tipos de fuentes de datos:
+
+​
+
+-DBDataSource: vinculado a una tabla de base de datos, representa datos tabulares
+
+(solo puede usar 1 tabla + solo establecer condiciones, sin clasificación, etc.)
+
+​
+
+-UserDataSource: actúa como un contenedor de datos dentro del formulario.
+
+(se puede conectar, por ejemplo, a un EditText o una columna en una Matriz)​
+
+​
+
+-DataTable: dos métodos (la combinación de los dos métodos no es posible)
+
+Complete con la declaración SQL (para que pueda usar uniones, clasificación, etc.)
+
+Defina las columnas de DataTable una por una y complete el código
+
+Las tablas de datos se utilizan principalmente junto con los objetos Grid o ChooseFromList.
+
+--
+
+.-Data Binding: Principle​
+
+Echemos un vistazo al principio de funcionamiento detrás del enlace de datos.
+
+La imagen en la parte inferior representa la base de datos. Los datos se cargan en la solución complementaria mediante el objeto DataSource.​
+
+Una vez que el objeto DataSource tiene los datos necesarios para el formulario, los datos se pueden mostrar en un elemento de formulario específico, por ejemplo, Matrix o EditText.
+
+--
+
+.-Data Binding: Object Summary​
+
+En esta diapositiva, puede ver la jerarquía de objetos.​
+
+El objeto Form tiene un objeto hijo llamado DataSource. El objeto secundario DataSource contiene tres colecciones de objetos: DBDataSources, UserDataSources y DataTables.​
+
+Cada colección tiene los métodos públicos Add y Item y la propiedad pública Count.​
+
+Veamos ahora cómo se vinculan las colecciones a sus objetos secundarios.
+
+La colección DBDataSources tiene el objeto secundario DBDataSource. La parte superior de la tabla contiene algunas propiedades, mientras que la parte inferior contiene los métodos disponibles para el objeto DBDataSource.​
+
+La colección UserDataSources tiene el objeto secundario UserDataSource. Este objeto solo tiene propiedades.​
+
+La colección DataTables tiene el objeto secundario DataTable. Algunas de las propiedades se enumeran en la parte superior y los métodos se muestran en la parte inferior.
+
+--
+
+.-Data Binding: Steps for items and Data Sources​
+
+Estos son los pasos para crear un formulario con enlace de datos.
+
+Definir la forma
+
+Defina la fuente de datos dentro del formulario
+
+Vincule la fuente de datos a las columnas de Matrix o elementos/controles individuales
+
+Rellene los valores de la fuente de datos: esto mostrará los datos en los elementos enlazados a datos
+
+Este proceso funciona para DBDataSource y UserDataSource. Sin embargo, el enlace para DataTable es diferente.
+
+--
+
+.-Data Binding: Add Data Sources to Form​
+
+
+#
+    Add a DBDataSource to the form​
+
+    oForm.DataSources.DBDataSources.Add ("OUSR")​
+
+    'Add a UserDataSource​
+
+    oForm.DataSources.UserDataSources.Add (“udsRemarks", dt_LONG_TEXT, 30)​
+
+    ‘ Add a DataTable​
+
+    oForm.DataSources.DataTables.Add("MyDataTable")
+#
+
+
+
+
+El objeto Form contiene una colección de fuentes de datos, que contiene todas las fuentes de datos dentro del formulario.
+
+Un objeto DBDataSource representa una fuente de datos de base de datos (por ejemplo, una tabla en el rango de tablas de SAP Business One) adjunta a un formulario.
+
+Una tabla solo se puede adjuntar a un formulario una vez, utilizando el método Add de la colección DBDataSources.​
+
+El origen de datos del usuario también se puede adjuntar a un formulario mediante el método Add de la colección UserDataSources. Para obtener más información, consulte la documentación de la colección UserDataSources.​
+
+Un DataTable se puede usar para leer datos de cualquier tabla de base de datos o se puede usar de la misma manera que un UserDataSource.
+
+En conexión con un elemento de Grid, DataTable permite la visualización de datos tabulares, con funciones de expansión y contracción.
+
+--
+
+.-Data Binding: Bind a DBDataSource to an Item​
+
+#
+    Dim editTxt As SAPbouiCOM.EditText​
+
+    ‘Create an edit text item​
+
+    item = form.Items.Item("CodeEdTxt")​
+
+    editTxt = item.Specific​
+
+    ​
+
+    ‚Bind table OCRD field CardCode to the edit text​
+
+    editTxt.DataBind.SetBound(True, "OCRD", "CardCode")
+#
+
+Ahora que hemos agregado una fuente de datos a un formulario, ahora especificamos qué elementos del formulario se vincularán a él.
+
+Para un elemento simple como EditText, la propiedad específica del elemento contiene el objeto enlazado a datos.
+
+Use su método SetBound para vincular el elemento a una fuente de datos.
+
+Para un elemento Matrix, los datos se vinculan columna por columna.
+
+--
+
+.-Data Binding: Bind DataSources to Matrix columns / Grid​
+
+#
+    Dim oColumnDBS   As SAPbouiCOM.Column​
+
+    Dim oColumnUDS   As SAPbouiCOM.Column​
+
+    oMatrix = Form.Items.Item("Matrix1").Specific​
+
+    oColumns = oMatrix.Columns​
+
+    ​
+
+    ‘DBDataSource: Binding a field / alias of the table to a column​
+
+    oColumnDBS = oColumns.Item("UserName")​
+
+    oColumnDBS.DataBind.SetBound (True, "OUSR", "U_NAME“)​
+
+    ​
+
+    ‘UserDataSource: Bind a UserDataSource (UID) to a column ​
+
+    oColumnUDS = oColumns.Item(“Remarks")​
+
+    oColumnUDS.DataBind.SetBound (True, "", “udsRemarks“)​
+
+    ​
+
+    ‘DataTable: Bind a DataTable object to a Grid​
+
+    oGrid.DataTable = Form.DataSources.DataTables.Item("MyDataTable")
+#
+
+El siguiente fragmento de código muestra cómo se pueden vincular los datos para cada tipo de fuente de datos.
+
+Para DBDataSource, se utiliza el método SetBound, donde se deben definir 3 parámetros.​
+
+El parámetro True indica si el elemento está vinculado a DataSource o no. En el segundo parámetro, se proporciona TableName.​
+
+El último parámetro es el alias de la columna de la tabla específica.
+
+UserDataSource también usa el método SetBound. En este caso, el segundo parámetro está vacío y el tercer parámetro debe usarse para definir la ID única de la fuente de datos del usuario.
+
+Se requiere DataTable para definir el objeto secundario de fuente de datos para el objeto de formulario. Especifique la identificación única aquí.
+
+--
+
+.-Data Binding: Get Data from a DBDataSource​
+
+#
+    Dim oDBDataSource   As SAPbouiCOM.DBDataSource​
+
+    Dim oMatrix         As SAPbouiCOM.Matrix​
+
+        ​
+
+    ' getting the data sources bound to the form​
+
+    oDBDataSource = oForm.DataSources.DBDataSources.Item("OUSR")​
+
+    ​
+
+    ' getting the matrix on the form​
+
+    oMatrix = oForm.Items.Item("Matrix1").Specific​
+
+    ​
+
+    ​
+
+    oMatrix.Clear()​
+
+    ​
+
+    ' Querying the DB Data source – i.e. load data from DB​
+
+    oDBDataSource.Query()​
+
+    ​
+
+    ' Adding the data to the matrix​
+
+    oMatrix.LoadFromDataSource()
+#
+
+Este fragmento de código llenará una matriz de la tabla OUSR basada en el enlace de datos de columnas de matriz individuales.
+
+El método Query recupera todos los datos. Opcionalmente, se puede especificar un argumento de Condiciones para implementar una cláusula WHERE.
+
+La matriz se puede completar fila por fila con el método AddRow o se puede completar en un solo paso con LoadFromDataSource.​
+
+Si algunas columnas de matriz están vinculadas a datos de usuario, LoadFromDataSource solo es útil si todas las filas contienen el mismo valor para cualquier columna vinculada a datos de usuario.
+
+--
+
+.-Data Binding: Populating a DataTable​
+
+#
+    Dim oDataTable   As SAPbouiCOM.DataTable​
+
+        ​
+
+    ' getting the data sources bound to the form​
+
+    oDataTable = oForm.DataSources.DataTables.Item(“MyDataTable")​
+
+    ​
+
+    ​
+
+    ' Querying the DataTable​
+
+    oDataTable.ExecuteQuery(“Select CardCode, DocDate from OINV")​
+
+    ​
+
+    ' Columns of the Grid will be added and populated automatically ​
+#
+
+El siguiente código llenará los datos desde la fuente de datos de DataTable hasta el objeto de cuadrícula.
+
+El objeto DataTable debe vincularse al formulario. Luego, el método ExecuteQuery se puede ejecutar con los parámetros de la instrucción SQL.​
+
+Los datos se mostrarán automáticamente en el objeto de la cuadrícula y el número de columna de la cuadrícula dependerá de la columna especificada en la consulta.
+
+--
+
+.-Data Binding: DataSources on System Forms​
+
+Ahora ve las reglas básicas para trabajar con fuentes de datos en formularios del sistema.
+
+Las fuentes de datos se rellenan solo con los datos que ya están almacenados en la base de datos. Los cambios en el formulario deben confirmarse en la base de datos.
+
+Las fuentes de datos en los formularios del sistema no se pueden cambiar.​
+
+Los eventos de elementos, como et_DATASOURCE_LOAD y et_MATRIX_LOAD, ocurren solo para los usuarios, pero no en los formularios del sistema.
+
+--
+
+.-Data Binding: DataSources on User Forms​
+
+Navegación
+
+Al navegar entre registros, establezca una condición para DBDataSource o DataTable
+
+​
+
+valores
+
+Cuando necesite mostrar valores en un formato diferente al almacenado en la base de datos, use UserDataSource: ​
+
+Ejecute la consulta (por ejemplo, a través de DI API o DBDataSource), formatee los datos según sea necesario y luego almacene los valores en UserDataSources​
+
+​
+
+Borrar elementos del formulario
+
+Establezca la condición de DBDataSources para que los resultados estén vacíos
+
+Establezca los valores de UserDataSource en „“​
+
+Establezca las cadenas de elementos de la interfaz de usuario directamente en "" solo como último resultado
+
+-
+
+La siguiente diapositiva trata sobre las reglas generales para las fuentes de datos utilizadas para los formularios de usuario.
+
+Las condiciones deben establecerse para DBDataSource y DataTable si planea navegar entre registros.
+
+Si el tipo de datos de un valor específico no es preciso, se puede usar UserDataSource para mostrar el valor en un formato diferente.
+
+Por ejemplo, los datos podrían recuperarse con DI API o DBDataSource y los valores luego se almacenarían en UserDataSource para convertir el tipo de datos.
+
+Entonces es necesario limpiar el trabajo.​
+
+Las condiciones utilizadas para DBDataSources deben establecerse en nulo. El valor de UserDataSource debe establecerse en nulo o en una cadena vacía.
+

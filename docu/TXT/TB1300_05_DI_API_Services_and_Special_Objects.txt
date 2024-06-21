@@ -1,0 +1,484 @@
+##############################################
+TB1300_05_DI_API_Services_and_Special_Objects #
+----------------------------------------------
+
+.-Agenda
+
+En esta unidad cubriremos los temas principales:
+
+ *Special objects
+
+ *Business services
+
+
+.-Special Objects: Objetivos del tema
+
+Después de completar este tema, podrá
+
+ *Enumerar algunos non-business objects útiles
+
+ *Explicar cómo trabajar con non-business objects.
+
+
+.-RecordSet Object
+
+RecordSet es un objeto de acceso a datos sin procesar que le permite seleccionar datos de la base de datos, navegar por el conjunto de resultados y manipular tablas de usuario que no están expuestas por la DI API.​
+
+El método principal de este objeto es DoQuery, que le permite ejecutar consultas SQL con cualquier acción de lenguaje de manipulación de datos (DML) en su cadena de consulta.
+
+La sintaxis SQL para DoQuery puede depender del tipo de base de datos subyacente.
+
+Tenga en cuenta que el uso de este objeto no incluye la validación de datos. Recomendamos encarecidamente usar el objeto RecordSet solo para leer datos.
+
+
+.-RecordSet Object: Example – DoQuery​
+
+#
+ Declare RecordSet variable​
+
+ Dim oRecordSet As SAPbobsCOM.Recordset​
+
+
+ ' Get an initialized RecordSet object​
+ oRecordSet = oCompany.GetBusinessObject(SAPbobsCOM.BoObjecTypes.BoRecordset)​
+
+ ' Perform the DoQuery​
+ oRecordSet.DoQuery("Select Code, Name, from OCRD where U_LastName = ‘Lopez’")​
+
+ 'Access data​
+ While Not oRecordSet.EOF​
+
+     MessageBox.Show(​
+
+ "Code " & oRecordSet.Fields.Item("Code").Value & _​
+ "Name " & oRecordSet.Fields("Name").Value & _​
+                "LastName " & oRecordSet.Fields ("U_LastName").Value​
+
+ )​
+     ‘ Get the next record​
+
+     oRecordSet.MoveNext​
+ End While​
+#
+
+RecordSet es un objeto de acceso a datos sin procesar que le permite seleccionar datos de la base de datos, navegar por el conjunto de resultados y manipular tablas de usuario que no están expuestas por la DI API.​
+
+El método principal de este objeto es DoQuery, que le permite ejecutar consultas SQL con cualquier acción de lenguaje de manipulación de datos (DML) en su cadena de consulta.
+
+La sintaxis SQL para DoQuery puede depender del tipo de base de datos subyacente.
+
+En el ejemplo de la diapositiva, el objeto RecordSet se usa para recuperar todos los datos de la tabla de usuarios.
+
+Después de la declaración de la variable y la inicialización del objeto RecordSet, se ejecuta el método DoQuery, utilizando la instrucción SQL definida manualmente.
+
+Cada registro recuperado por el método DoQuery se muestra como un cuadro de mensaje separado en su proyecto de complemento de ejemplo.
+
+
+.-DataBrowser Object: Features​
+
+#
+ Object:​
+
+ <Business Object>​
+
+
+ Methods:​
+
+ GetByKeys​
+
+ MoveNext​
+
+ ReadXML​
+
+
+ Properties:​
+
+ RecordSet​
+
+ RecordCount​
+#
+
+Puede llamar al objeto DataBrowser utilizando la propiedad Browser para todos los objetos comerciales.
+
+Permite la navegación de datos a través de todos los objetos de un determinado tipo de objeto
+
+Fácil de usar: acceso directo a las propiedades de los objetos comerciales
+
+No puede crear un nuevo objeto DataBrowser, se invoca como una propiedad del navegador de un objeto comercial.
+
+Ejemplo: recorrer todos los socios comerciales
+
+
+El objeto DataBrowser permite una manipulación de datos más compleja y sofisticada dentro de los objetos comerciales.​
+
+No puede crear este objeto directamente. En su lugar, se invoca como una propiedad de un objeto comercial.
+
+Por ejemplo, el objeto BusinessPartner tiene una propiedad "Browser", que se refiere a un objeto DataBrowser.
+
+Después de ejecutar con éxito una consulta SQL con el objeto RecordSet, puede establecer RecordSet en la propiedad RecordSet de DataBrowser y vincular los dos objetos.
+
+
+.-DataBrowser Object: Working Steps​
+
+Define a RecordSet object​
+
+Call Query on the RecordSet​
+
+Set the DataBrowser sub object with the RecordSet​
+
+Manipulate your Data Browser (Move First, MoveNext, …)​
+
+
+En la siguiente diapositiva, puede ver la descripción general del proceso con el trabajo del objeto DataBrowser.​
+
+El primer paso es definir el objeto RecordSet y luego usar el método DoQuery con el objeto RecordSet.​
+
+En el siguiente paso, vincule el objeto RecordSet a la propiedad Browser.RecordSet.​
+
+Finalmente, puede acceder y manipular los datos en la parte superior del objeto secundario del navegador. Para la navegación, puede usar los métodos expuestos para DataBrowser, como MoveFirst, MoveNext, MovePrevious y MoveLast.
+
+Luego, las propiedades de registro específicas se cargan en el objeto principal y luego puede acceder a ellas llamando a la propiedad exacta o al nivel del objeto secundario.
+
+
+.-DataBrowser Object: Example – Browse Business Partners​
+
+#
+ Dim oBP As SAPbobsCOM.BusinessPartners ​
+
+ Dim sVal As String​
+
+ Dim oRecSet As SAPbobsCOM.Recordset '1) Definition​
+
+ oBP = oCompany.GetBusinessObject(SAPbobsCOM.BoObjecTypes.oBusinessPartners)​
+
+ oRecSet = oCompany.GetBusinessObject(SAPbobsCOM.BoObjecTypes.BoRecordset)​
+
+
+
+ oRecSet.DoQuery "select * from OCRD" ‘2) Retrieve the records​
+
+
+
+ oBP.Browser.Recordset = oRecSet ‘3) Assign the RecordSet to the DataBrowser ​
+
+ oBP.Browser.MoveFirst​
+
+ While oBP.Browser.EOF = False ‘4) Work with data (properties)​
+
+     sVal = oBP.CardCode 'Direct approach to the properties​
+
+     sVal = oBP.CardName ‘no need to work with field name​
+
+     sVal = oBP.CardType ​
+
+     oBP.Browser.MoveNext ‘All properties are filled automatically when “moving”​
+
+ Wend​
+#
+
+Este es el código de muestra para usar el navegador de datos con los datos maestros del socio comercial.​
+
+Definir RecordSet para el objeto del navegador de datos
+
+Llame a DoQuery de RecordSet para recuperar los datos
+
+Asigne el RecordSet al navegador de datos
+
+Trabajar con datos (propiedades)​
+
+
+Acceso directo a las propiedades: no es necesario trabajar con el nombre del campo de la base de datos, porque en su lugar se pueden usar los nombres de las propiedades.
+
+Todas las propiedades se completan al navegar a un registro en particular.
+
+
+.-The SBObob Object​
+
+Sample for GetWarehouseList method​
+
+#
+ Dim oRecordSet As SAPbobsCOM.Recordset​
+
+ Dim rs As SAPbobsCOM.Recordset​
+
+ Dim strResult As String​
+
+ Dim errResult As String​
+
+
+ Set vObj =m_company. GetBusinessObject(BoBridge)​
+
+ Set rs =m_company. GetBusinessObject(BoRecordset)​
+
+ Set rs = vObj.GetWareHouseList()​
+
+ strResult = RecorsetToText(rs)​
+
+ errResult = GetLastErrorString()​
+
+ OutputMessage(strResult, errResult)
+#
+
+Los métodos SBObob recuperan información de uso común directamente de la base de datos sin utilizar los objetos comerciales.
+
+La principal diferencia entre los objetos RecordSet y SBObob es que los métodos SBObob admiten cambios de datos en las tablas del sistema, mientras que RecordSet no.
+
+El siguiente código de ejemplo muestra cómo recuperar una lista de almacén.
+
+Devuelve un objeto RecordSet que contiene el código de almacén y el nombre definido en la base de datos de la empresa. Para recuperar una lista de almacenes, aplique este método en un bucle.
+
+
+.-Special Objects: Exercise​
+
+En el ejercicio de esta sección, practicará el trabajo con objetos 
+RecordSet, DataBrowser y SBObob.
+
+
+.-DI API Services: Topic Objective​
+
+Después de completar este tema, podrá utilizar los servicios de DI API.​
+
+
+.-DI API Services: Overview​
+
+CompanyService es el principal servicio DI al que debe llamar antes de utilizar cualquier otro servicio. CompanyService le permite gestionar los datos de administración de la empresa.​
+
+Esto incluye los datos de administración, empresa, publicación y finanzas.​
+
+CompanyService incluye una gran cantidad de funciones, algunas de las cuales se enumeran en la diapositiva.
+
+Ahora examinemos la teoría de cómo se puede usar CompanyService.
+
+Primero, llame a CompanyService ​
+
+Luego, el método GetBusinessService se puede ejecutar para el servicio requerido.
+
+Luego es necesario crear una estructura de datos vacía relacionada con el servicio requerido.
+
+Luego se pueden establecer las propiedades requeridas de la estructura de datos especificada.
+
+Finalmente, el método de servicio requerido se puede llamar
+
+
+The CompanyService includes ​the following functions:​
+
+CreatePeriod​
+
+GetAdminInfo​
+
+GetCompanyInfo​
+
+GetFinancePeriod​
+
+GetFinancePeriods​
+
+GetPeriod​
+
+GetPeriods​
+
+UpdateAdminInfo​
+
+UpdateCompanyInfo​
+
+UpdateFinancePeriod​
+
+UpdatePeriod
+
+
+.-DI API Services: Example – Business Partners Service​
+
+#
+ ‘1) get general company service​
+
+ oCmpSrv = oCompany.GetCompanyService​
+
+
+
+ ‘2) get specific Business Partners service​
+
+ oBPsService = oCmpSrv.GetBusinessService(ServiceTypes.BusinessPartnersService)​
+
+
+
+ ‘3) a) get Accounts Service Data Interface​
+
+ oOpenningBalanceAccount = oBPsService.GetDataInterface(​
+ BusinessPartnersServiceDataInterfaces.bpsdiOpenningBalanceAccount)​
+
+
+
+ 'set the account information for the opening balance account​
+
+ oOpenningBalanceAccount.OpenBalanceAccount = "_SYS00000000078" ‘using segmentation…​
+
+ oOpenningBalanceAccount.Details = "Bp Accounts Opening Balance“​
+
+ oOpenningBalanceAccount.Date = date.Today​
+
+
+
+ ‘3) b) get Business Partners Service Data Interface and set the corresponding            information for the BPs…​
+
+ oBpAccounts = oBPsService.GetDataInterface(​
+
+ BusinessPartnersServiceDataInterfaces.bpsdiBPCodes)​
+
+
+
+ oBpAccountFirst = oBpAccounts.Add() 'add first account​
+
+ oBpAccountFirst.Code = “C20000"​
+
+ oBpAccountFirst.Credit = 300​
+
+
+
+ oBpAccountSecond = oBpAccounts.Add () 'add second account​
+
+ oBpAccountSecond.Code = “C40000”​
+
+ oBpAccountSecond.Credit = 300​
+
+
+ ‘4) call the method that takes the structures/”Data Interfaces” and creates the           balances…​
+
+ oBPsService.CreateOpenBalance(oOpenningBalanceAccount, oBpAccounts)
+#
+
+
+El siguiente ejemplo de código utiliza el servicio BusinessPartners para transferir montos de crédito o débito desde una cuenta de saldo de apertura específica a una o más cuentas de socios comerciales.
+
+Como resultado, este servicio crea una línea de entrada de diario.
+
+Se debe crear una instancia de CompanyService llamando al método GetBusinessService con un parámetro del tipo de servicio BusinessPartnersService.
+
+Luego, se crea una instancia de BusinessPartnersService llamando al método GetDataInterface con un parámetro de OpenningBalanceAccount.
+
+Fluye luego con la definición de propiedades para el objeto OpenningBalanceAccount.​
+
+Luego podemos llamar a la intercalación de objetos BPCodes, para crear múltiples variables para el objeto BPCode, donde se definen las propiedades.
+
+Finalmente, se llama al método CreateOpenBalance en el servicio BusinessPartners con los parámetros de los objetos de cuenta de saldo abierto y cuenta de socio comercial previamente definidos.​
+
+
+.-DI API Services: Additional Company Service Objects with Example (1/2)​
+
+PathAdmin: objeto para configurar y obtener rutas de directorio para almacenar varios archivos.
+
+GetPathAdmin
+
+UpdatePathAdmin
+
+
+#
+ // Get the path admin object ​
+
+ CompanyService com_service = DICompany.GetCompanyService();​
+
+ oPathAdmin = com_service.GetPathAdmin();​
+
+
+
+ // Set new paths ​
+
+ oPathAdmin.WordTemplateFolderPath = "c:\Documnets\Templates\"; ​
+
+ oPathAdmin.PicturesFolderPath = "c:\Documnets\Pictures\"; ​
+
+ oPathAdmin.AttachmentsFolderPath = "c:\Documnets\Data\"; ​
+
+ oPathAdmin.ExtensionsFolderPath = "c:\Documnets\Extention\"; ​
+
+
+
+ // Update paths ​
+
+ com_service.UpdatePathAdmin(oPathAdmin);
+#
+
+El objeto PathAdmin puede establecer y obtener la ruta del directorio disponible para SAP Business One.​
+
+Los parches de carpeta específicos se exponen como una propiedad en el objeto PathAdmin.
+
+Para habilitar el trabajo con las rutas, es necesario utilizar los métodos GetPathAdmin o UpdatePathAdmin disponibles para Company Service.
+
+
+.-DI API Services: Additional Company Service Objects with Example (2/2)​
+
+Blob: contiene contenido de blob que se agregará o recuperará de un campo de blob en una base de datos de SAP Business One.
+
+#
+ String blobNewFilePath = @"C:\myblobfile.zip"; ​
+
+ SAPbobsCOM.CompanyService oCompanyService =             oCompany.GetCompanyService();​
+
+
+
+ // Specify a table and blob field ​
+
+ SAPbobsCOM.BlobParams oBlobParams; ​
+
+ oBlobParams = (SAPbobsCOM.BlobParams)                   oCompanyService.GetDataInterface                                                             (SAPbobsCOM.CompanyServiceDataInterfaces.csdiBlobParams) ; ​
+
+ oBlobParams.Table = "RDOC"; ​
+
+ oBlobParams.Field = "Template";​
+
+
+
+ // Specify key name and key value of a record to        update ​
+
+ SAPbobsCOM.BlobTableKeySegment oKeySegment; ​
+
+ oKeySegment = oBlobParams.BlobTableKeySegments.Add(); ​
+
+ oKeySegment.Name = "DocCode"; ​
+
+ oKeySegment.Value = "ACT10001";​
+
+
+
+ SAPbobsCOM.Blob oBlob; ​
+
+ oBlob = (SAPbobsCOM.Blob)                               oCompanyService.GetDataInterface                        (SAPbobsCOM.CompanyServiceDataInterfaces.csdiBlob);​
+
+
+
+ // Get contents of a blob field ​
+
+ oBlob = oCompanyService.GetBlob(oBlobParams);​
+
+
+
+ // Convert Base64 string to binary ​
+
+ byte[] buf; ​
+
+ buf = Convert.FromBase64String(oBlob.Content); ​
+
+
+
+ // Write blob file to file system ​
+
+ FileStream oFile = new FileStream(blobNewFilePath,      FileMode.Create, FileAccess.Write); ​
+
+ oFile.Write(buf, 0, buf.Length); ​
+
+ oFile.Close(); ​
+
+ oFile.Dispose();​
+#
+
+El objeto Blob (abreviatura de Binary Large Object) puede insertar o recuperar los datos binarios de una base de datos de SAP Business One.
+
+El siguiente ejemplo usa el método GetBlob en CompanyService para recuperar el contenido binario de la base de datos.
+
+Esto requiere la definición de la tabla de la base de datos, junto con los detalles clave. A continuación, se puede recuperar el contenido binario.​
+
+Este ejemplo muestra cómo el contenido se puede convertir a dígitos de base 64 y guardarse como un archivo.
+
+
+.-DI API Services: Exercise​
+
+En el ejercicio de esta unidad, practicará el uso del objeto AdminInfo como objeto secundario de CompanyService.
+

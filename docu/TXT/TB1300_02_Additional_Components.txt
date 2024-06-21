@@ -1,0 +1,313 @@
+################################
+TB1300_02_Additional_Components #
+--------------------------------
+
+.-Componentes adicionales de SAP Business One: Objetivos del tema
+
+Después de completar este tema, podrá
+
+ *Describir el propósito y las características del Framework para 
+  SAP Business One
+
+ *Explicar en alto nivel sobre SAP Business One, versión para SAP HANA
+
+ *Explicar en alto nivel sobre SAP Business on Cloud
+
+ *Describir el propósito, las características y las funciones de Data Transfer Workbench.
+
+--
+
+.-Agenda
+
+En esta unidad cubriremos los siguientes temas:
+
+ *Framework para SAP Business One
+
+ *SAP Business One en SAP HANA
+
+ *SAP Business One en la nube
+
+ *Data Transfer Workbench
+
+Comencemos con el primer elemento de la lista: Framework para SAP Business One
+
+--
+----------------------------------------------
+Framework de integración para SAP Business One
+----------------------------------------------
+
+--
+
+.-Framework de integración para SAP Business One - Capacidades de la plataforma
+
+El Framework de integración de SAP Business One integra el núcleo digital(digital core) con otras aplicaciones, dispositivos y servicios.
+
+Al usar esta solución, es posible transformar completamente los procesos y la funcionalidad centrales de SAP Business One.​
+
+Es posible conectar el núcleo digital a otras aplicaciones de terceros(third-party) y 
+crear una comunicación automática entre ellas.
+
+El Framework de integración también proporciona una buena solución para la conexión 
+entre filiales(subsidiaries), sucursales(branches) y redes comerciales(business network).
+
+--
+
+.-Framework de integración para SAP Business One - Capacidades de la plataforma
+
+Ahora echemos un vistazo a las capacidades del Framework de integración 
+para SAP Business One.
+
+SAP ofrece escenarios de integración listos para usar para sincronizar datos entre 
+SAP Business One y otras soluciones como: SAP Customer Checkout, SAP Ariba, SAP Hybris
+y SAP Concur.
+
+Otro tipo de escenarios de integración provenientes de SAP están relacionados con 
+las extensiones comerciales, que se pueden utilizar para la solución móvil, 
+Dashboards y Request for Quotation.
+
+Las diversas localizaciones requieren diferentes escenarios de integración específicos 
+del país, por ejemplo, gestionar la integración automatizada para las autoridades 
+específicas del país. 
+Muchos países requieren esta comunicación automática como Alemania, Hungría, 
+México, Brasil, Portugal y Chequia. Este escenario de integración específico 
+del país lo proporciona el Framework de integración de SAP Business ONE.
+
+La solución SAP Business One Intercompany se basa completamente en esta solución para 
+administrar varios escenarios de integración entre varias sucursales(branches), como la replicación de datos maestros(Master Data) entre varias entidades de SAP Business One.
+Con los paquetes de escenarios entregados para la integración de subsidiarias, es posible configurar la conexión entre la sede central que ejecuta S/4 HANA/SAP ECC/SAP BW con la subsidiaria de SAP Business One.
+
+--
+
+.-Aspectos clave del Framework de integración
+
+Los aspectos clave del Framework de Integración son:
+
+ *Integrar productos SAP a sistemas SAP y no SAP.
+
+ *La implementación del producto también puede funcionar en el motor de base de datos 
+  SAP HANA y Microsoft SQL. También es posible implementar la solución en una 
+  computadora de placa única, luego se usa el motor de base de datos MySQL.
+
+ *Este framework se puede considerar como una plataforma adicional donde se puede          ampliar el núcleo digital de SAP Business One.
+
+ *La solución también contiene la función de gestión de procesos empresariales
+  (Business Process Management feature), donde es posible crear flujos automatizados
+  ampliados con acciones manuales.
+
+ *Es posible implementarlo on premise y en la nube.
+
+Para obtener más información, sobre el Framework de integración para SAP Business One,
+https://blogs.sap.com/?p=704864
+
+--
+----------------------------
+SAP Business One en SAP HANA
+----------------------------
+
+.-Productos SAP Business One en SAP HANA
+
+Actualmente SAP ofrece dos productos para SAP HANA:
+
+ *El SAP Business analytics impulsado por SAP HANA: amplía el entorno de SAP Business      One que se ejecuta sobre el servidor Microsoft SQL con la característica analítica.
+  
+  Esta es una solución de lado a lado que sincroniza automáticamente los datos             analíticos en la base de datos de SAP HANA en la memoria.
+
+ *La versión de SAP Business One para SAP HANA fusiona las características analíticas y 
+  los datos de transacciones en una sola base de datos. En el caso anterior, el            rendimiento aumentó solo para análisis, pero para SAP Business One, versión para SAP     HANA, el rendimiento también es significativo para operaciones transaccionales.
+
+Recomendamos seleccionar la opción SAP Business One, versión para SAP HANA, principalmente porque en la computación de memoria abre nuevos horizontes para el núcleo digital.
+
+Además, en términos de simplificación, es mejor tener los datos OLTP y OLAP
+en una base de datos en memoria.
+
+--
+
+.-SAP Business One, versión para SAP HANA
+
+Veamos qué beneficios y aspectos adicionales vienen con SAP Business One,
+versión para SAP HANA.
+
+Aprovecha el poder de la computación en memoria de SAP HANA para transformar su negocio
+para funcionar de forma más inteligente, rápida y sencilla en un mundo digital.
+
+Con SAP Business One, versión para SAP HANA, se beneficia de:
+
+ *Ágil: Obtienes información comercial en tiempo real en el momento que la necesitas 
+  para que puede definir claramente un enfoque en las prioridades correctas.
+
+ *Perspectiva: aproveche una única plataforma para análisis y transacciones para obtener 
+  resultados sin precedentes capacidades de insight-to-action. Aproveche las               aplicaciones en tiempo real para el flujo de efectivo y otros procesos para resolver 
+  "problemas irresolubles".
+
+ *Eficiencia: Capacitar a los empleados con capacidades de búsqueda de información e 
+  interacción herramientas de análisis para ayudarlos a ser más productivos e 
+  independientes del personal de TI.
+
+ *Valor: Conviértase en una solución con un precio para pequeñas empresas y diseñada para
+  escalabilidad
+
+--
+
+.-Capacidades y Soluciones en SAP Business One, versión para SAP HANA
+
+SAP Business One, versión para SAP HANA proporciona muchas características y funcionalidades:
+
+En términos de (Experiencia del usuario), se ofrecen la cabina estilo Fiori(Fiori-Style Cockpit), la búsqueda empresarial y el Portal Analítico. SAP Business One ofrece algunas
+aplicaciones móviles adicionales, que solo pueden funcionar en esta arquitectura.
+
+También se proporciona mucho contenido analítico(analytical content), como 
+Pervasive Analytics, Customer 360 grados y Interactive Analysis.
+
+Con la tecnología en memoria(in-memory technology), es posible agregar funciones, 
+como Aplicaciones integradas en tiempo real(Embedded Real-time Apps), 
+Cash Flow Forecast y Advanced Available to Promise (ATP).
+
+La Plataforma de Extensibilidad(Extensibility Platform) trae nuevas tecnologías al juego. 
+SAP Business One, la versión para SAP HANA viene con App Framework, también conocido 
+como XS Engine para desarrollar una nueva generación de aplicaciones.
+
+--
+
+.-App Framework para SAP Business One, versión para SAP HANA
+
+La versión de App Framework para SAP Business One para SAP HANA tiene muchas ventajas.
+
+Estas ventajas le permiten:
+
+ *Empoderar el ecosistema de SAP Business One para construir fácil de ampliar,
+  aplicaciones analíticas livianas, basadas en la web, que brindan información comercial.
+
+ *Enriquecer los complementos tradicionales(add-ons) con aplicaciones analíticas basadas   en la web en el nuevo marco liviano e incrustarlos en los add-ons.
+
+ *Aproveche las fortalezas integradas de SAP HANA y XS con SAP integrado Servicios 
+  de Business One para desarrollar aplicaciones a un bajo costo de desarrollo en un 
+  lean stack con procesamiento de big data; explorador de nuevos negocios.
+  
+ *Optimizar la eficiencia de los procesos de negocio
+
+ *Ejecutar directamente en el dispositivo SAP HANA con un TCO minimizado y un              rendimiento excelente.
+
+--
+-----------------------------
+SAP Business One en la nube
+-----------------------------
+
+.-Opciones de nube de SAP Business One
+
+Hay dos aspectos principales en SAP Business One.
+
+​
+
+La primera son las opciones de implementación(Deployment options).
+
+Actualmente existen tres modelos de despliegue para SAP Business One: ​
+
+-SAP alojado(hosted): donde la infraestructura y la gestión del ciclo en vivo son proporcionadas por SAP y el soporte y la implementación de nivel 1 y 2 son realizados por socios seleccionados de SAP Business One dentro de la región.
+
+-Socio de SAP Business One alojado(partner hosted)
+
+-Y un modelo híbrido, en el que el socio de SAP Business One(partner hosted) gestiona las actividades relacionadas con SAP Business One y los servicios en la nube son proporcionados por una empresa externa(third-party company), con gran experiencia en las tareas relacionadas con la infraestructura.
+
+​
+
+-El segundo aspecto es una aplicación web relacionada con la Nube. Se llama Cloud Control Center para SAP Business One. Es un producto separado, que ayuda a administrar SAP Business One en el entorno de la Nube(Cloud environment).​
+
+Cloud Control Center tiene una interfaz web, lo que hace que la gestión de SAP Business One Cloud Landscape sea sencillo y fácil de usar. Echaremos un vistazo al Cloud Control Center más adelante.
+
+--
+
+.-SAP Business One Cloud Landscape​
+
+La imagen ilustra el entorno de nube de SAP Business One.​(SAP Business One Cloud Landscape​).
+
+El cliente está utilizando el Portal de acceso de usuarios(User Access Portal) para comenzar a utilizar un cliente de SAP Business One y otras herramientas y componentes.
+
+El cliente se asigna a un arrendatario, que representa una base de datos de la empresa en el mundo local(premise world).
+
+Los inquilinos(tenants) se organizan en Service Units. Los Service Units conectan a los clientes, arrendatarios y componentes de software de SAP Business One con todos los servicios.​
+
+Solo el almacenamiento y el servicio de licencias pueden ser comunes para los Service Units.
+
+Un Service Unit puede ejecutar solo una versión y un parche específicos de SAP Business One.
+
+En el nivel inferior se encuentra la capa de hardware, red y virtualización.
+
+--
+
+.-Centro de control en la nube para SAP Business One - resumen
+
+El Cloud Control Center para SAP Business One viene con una interfaz de usuario de aplicación web.​
+
+Este es el centro de administración para todo el entorno(landscape) de SAP Business One Cloud que permite la gestión de clientes(customer) e inquilinos(tenant), y la gestión de toda el Service Unit.
+
+Solo los operadores de la nube y revendedores tienen acceso a esta interfaz.
+
+--
+-----------------------
+Data Transfer Workbench​
+-----------------------
+
+.-Data Transfer Workbench (DTW)​
+
+Data Transfer Workbench (DTW) es una herramienta proporcionada con SAP Business One para importar datos en objetos de SAP Business One utilizando plantillas predefinidas de Microsoft Excel. El DTW está diseñado principalmente para la importación masiva o la actualización de datos maestros, datos de configuración, plan de cuentas, asientos de diario y documentos abiertos de ventas, compras, producción y servicios.​
+
+Para importar datos, utiliza archivos de plantilla de Excel predefinidos donde ingresa sus datos.
+
+Luego, este archivo se importa mediante un asistente(wizard) fácil de usar. Este asistente utiliza un registro(log) para mostrar los registros de datos importados o los errores que surgieron durante el proceso de importación.
+
+El DTW utiliza la DI API para acceder a la base de datos de SAP Business One.
+
+--
+
+.-Data Transfer Workbench – Data Import Process​
+
+Después de instalar DTW, la carpeta ejecutable de DTW contiene las plantillas de Microsoft Excel predefinidas.
+
+Estas plantillas incluyen una columna para cada campo de la tabla que se expone a la DI API.​
+
+El usuario elige la plantilla relevante de acuerdo con el tipo de datos para importar y agregar registros(records) a la plantilla.
+
+Luego, el usuario importa los archivos de datos utilizando el asistente de DTW. En este asistente, el usuario elige el archivo de origen para cargar, luego ubica el objeto comercial relevante y valida la corrección de la asignación de los datos de los campos importados.
+
+Después de eso, el usuario puede ejecutar una simulación de importación antes de la importación real. La simulación señalará cualquier error pero no importará ningún dato.​
+
+El paso final es la importación de datos. Se produce un registro(log) para cada registro(record) importado con éxito a la base de datos. Para registros(records) fallidos, el registro(log) mostrará información para ayudarlo a depurar(debug) el error.
+
+--
+
+.-Useful Links​
+
+SAP Business One​
+
+https://partneredge.sap.com/en/products/business-one/about/sbo.html​
+
+SAP Business One, version for SAP HANA​
+
+https://partneredge.sap.com/en/products/business-one/about/sbo-hana.html​
+
+SAP Business One analytics powered by SAP HANA​
+
+https://partneredge.sap.com/en/products/business-one/about/sbo-analytics.html​
+
+SAP Business One Cloud​
+
+https://partneredge.sap.com/en/products/business-one/about/sbo-cloud.html​
+
+SAP Business One Mobile Applications​
+
+https://partneredge.sap.com/en/products/business-one/about/sbo-mobile.html​
+
+Integration Products for SAP Business One​
+
+https://partneredge.sap.com/en/products/business-one/about/sbo-hana.html
+
+Visite los sitios de SAP PartnerEdge para obtener más información sobre el producto que se muestra en la diapositiva.​
+
+Tenga en cuenta que PartnerEdge está restringido solo a los socios de SAP Business One.​
+
+Deberá tener una cuenta de usuario S para poder ver el contenido.
+
+--
+
+
+

@@ -1,0 +1,35 @@
+################################
+ERRORES DE CODIGO EN C#  SAP    #
+--------------------------------
+--------------------------------
+###################################
+Add Invoice failed: 540000062 - G/L account 705000500 
+needs DR assignent for dimension 1; fill in Dr-related fields
+------------------------------------
+Soluciona añadiendo/asignando un valor a estos atributos dentro del for 
+que recorre cada linea de la factura que va a ser añadida
+------------------------------------
+oInv.Lines.COGSCostingCode = "DI";
+oInv.Lines.CostingCode = "DI";
+###################################
+Add Invoice failed: Target item number does not match base item number. [INV1.Item.Code][line: 1]
+------------------------------------
+Soluciona añadiendo la siguiente linea de codigo al recorrer cada linea de factura, debemos seleccionar la linea de la "orden"/"pedido", y no de la factura.
+------------------------------------
+oSO.Lines.SetCurrentLine(i);
+####################################
+Podría recibir el mensaje de error documentado en la nota de SAP 723420
+---------------------------------------
+Solucion: Libere el UDT antes de comenzar a trabajar con el UDF.
+---------------------------------------
+System.Runtime.InteropServices.Marshal.ReleaseComObject(oUDT);
+GC.Collect();
+###################################
+Exception: 10001237 - Enter valid folder path
+--------------------------------------
+Soluciona cambiando la ruta en SAP BUSINESS ONE 
+Gestión _> Inicialización sistema _> Parametrizaciones generales _> Carpeta de fichero XML 
+Elegimos una ruta local: Ej: C:\temp\
+###################################
+
+

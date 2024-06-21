@@ -1,0 +1,80 @@
+##########################
+TB1300_00_Course_Overview #
+--------------------------
+
+SAPSAP Documentation:
+
+https://help.sap.com/saphelp_sbo901/helpdata/es/45/2365399e152b31e10000000a1553f7/frameset.htm
+
+
+.-Requisitos previos del curso
+
+Para completar con éxito todos los temas del curso SDK, 
+debe tener un conocimiento básico y experiencia en:
+
+SAP Business One standard business and IT processes
+
+Microsoft .NET technology -ideally Visual Basic .NET or C#
+
+Software development processes
+
+--
+
+El público objetivo de este curso son los consultores de desarrollo de SAP Business One 
+que crearán funcionalidades adicionales para SAP Business One.
+
+--
+
+.-Cuándo usar SAP Business One SDK?
+
+-Su cliente requiere funciones adicionales, que no están incluidas en el paquete SAP Business One.
+
+-Le gustaría cambiar la interfaz de usuario para que coincida con otras extensiones o soluciones que tiene.
+
+-Su cliente necesita una interfaz de exportación o importación de datos para usar regularmente.
+
+-Desea vender una característica para una industria específica, incorporarla al producto.
+
+-Su necesidad de tener una apariencia y un diseño perfectos para su personalización.
+
+-Desea personalizar la lógica comercial o la funcionalidad actual.
+
+--
+
+.-Objetivos del curso SDK
+
+-Desarrolle funciones adicionales simples (complementos) usando:
+
+   *Interfaz de datos (DI) Interfaz de programación de aplicaciones (API)
+   *Interfaz de usuario y la API (UI API)
+
+-Utilice la función Objetos definidos por el usuario (UDO)
+
+-Usar componentes SDK en proyectos (clientes)
+
+-Modifique los procesos comerciales con el SDK
+
+-Cree y entregue un paquete de instalación adicional(add-on), 
+incluido el uso del mecanismo de licencia
+
+-Utilice los recursos de información relevantes del SDK
+
+-Explicar los requisitos de certificación de la solución SAP
+
+--
+
+.-Contenido del curso
+
+#Unidad
+1-Resumen e introducción del curso
+2-Herramientas de desarrollo de SAP Business One
+3-La interfaz de usuario (UI API)
+4-Herramientas de desarrollo SAP Business One
+5-Temas de UI API cruzada/DI API
+6-El Service Layer
+7-Empaquetado de complementos(add-on), administración de add-on y licencias
+8-Despliegue ligero
+9-Temas adicionales
+
+--
+##########################

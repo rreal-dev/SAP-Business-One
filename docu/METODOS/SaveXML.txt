@@ -1,0 +1,25 @@
+#
+ 'First connect to database…​
+
+
+
+ Dim oBP As SAPbobsCOM.BusinessPartners = _​
+
+    oCompany.GetBusinessObject(SAPbobsCOM.BoObjectTypes.oBusinessPartners)​
+
+ ​
+
+ oCompany.XmlExportType = SAPbobsCOM.BoXmlExportTypes.xet_ExportImportMode​
+
+
+
+ …​
+
+
+
+ If (oBP.GetByKey("C20000“) = False) Then​
+   MessageBox.Show("Failed to find the business partner")​
+ Else​
+   oBP.SaveXml ("c:\temp\BP_" + oBP.CardCode + ".xml")​
+ End If​
+#

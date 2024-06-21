@@ -1,0 +1,261 @@
+################################
+TB1300_07_DI_API_Java_Connector #
+--------------------------------
+
+.-Java Connector: Topic Objectives​
+
+Después de completar este tema, podrá usar y solucionar problemas de Java Connector.​
+
+
+.-Java Connector: Architecture​
+
+Echemos un vistazo a la arquitectura de la DI API.​
+
+Java Connector se comunica con SAP Business One DI API ocultando las complejas llamadas de Java Native Interface (JNI) de la máquina virtual Java a los objetos COM de DI API. Con Java Connector, puede obtener y establecer propiedades e invocar métodos convenientemente con código similar a JavaBean.
+
+Esencialmente, esto significa que puede crear una solución complementaria en Java que utilice el Conector de Java expuesto por la API DI de SAP Business One.​
+
+La DI API está estrechamente conectada con OBServerDLL, que realiza todas las operaciones de lógica comercial.
+
+El componente OBServerDLL ubicado en el lado del cliente se sincroniza con la versión implementada en la base de datos SBOCOMMON o el esquema de la base de datos.
+
+El conector Java de SAP Business One solo puede interactuar con la DI API.​
+
+
+.-Java Connector: Details​
+
+Main Java classes​
+
+ java.lang.Object ​
+
+ java.lang.Throwable​
+
+ com.sap.smb.sbo.api.SBOCOMUtil​
+
+
+Package hierarchy​
+
+ com.sap.smb.sbo.api​
+
+ com.sap.smb.sbo.util ​
+
+ com.sap.smb.sbo.wrapper​
+
+​
+Difference to DI API​
+
+ Create new object - “new<Object name>” ​
+
+ com.sap.smb.sbo.util ​
+
+
+to add new records are created using “new<Object name>” of the SBOCOMUtil class instead of using ICompany object’s “getBusinessObject”!​
+
+ E.g. newBusinessPartners must be used when you want to add a business partner!​
+
+
+En esta diapositiva, podemos ver la jerarquía de clases de Java.
+
+La clase java.lang.Object es la raíz de la jerarquía de clases.
+
+La clase java.lang.Throwable es la superclase de todos los errores y excepciones en el lenguaje Java.​
+
+La clase com.sap.smb.sbo.api.SBOCOMUtil es una clase de ayuda para proporcionar utilidades que crean u obtienen objetos comerciales de OBS-COM.
+
+El paquete com.sap.smb.sbo.api contiene todas las interfaces para manejar los objetos comerciales de SAP Business One.​
+
+El paquete com.sap.smb.sbo.util representa una clase de ayuda, que proporciona utilidades para convertir entre diferentes tipos de datos.
+
+El paquete com.sap.smb.sbo.wrapper representa el contenedor de SAP Business One.​
+
+Todas las interfaces están disponibles en el paquete com.sap.smb.sbo.api.​
+
+También hay un archivo de ayuda adicional de JCo. Debajo de esto, también se encuentra el archivo de ayuda para la API de la interfaz de datos. ¿Qué contiene la API de interfaz de datos? ¿Qué significa esto?
+
+
+.-Java Connector: Installation​
+
+The JCo always connects to latest version of the DI API​
+
+
+SAP Business One Java Connector es parte de la implementación de la API DI de SAP Business One.​
+
+Cuando se instala el cliente de SAP Business One, la DI API se instala de manera predeterminada. En este caso, el conector Java está disponible después de la instalación del cliente SAP Business One.​
+
+Si es necesario utilizar Java Connector en un entorno en el que no se necesita el cliente de SAP Business One, se puede ejecutar el paquete de instalación de la API DI de SAP Business One para instalar Java Connector para SAP Business One.
+
+Java Connector siempre utiliza la última versión de DI API.​
+
+
+.-Java Connector: Usage​
+
+Add sboapi.jar and sbowrapper.jar in the JAVA application​
+
+Para usar las bibliotecas de Java Connector en el entorno de desarrollo integrado (IDE), debe agregar bibliotecas al proyecto IDE.
+
+Los archivos de almacenamiento Java de SAP Business One Java Connector deben agregarse al proyecto.​
+
+En concreto, estos archivos son sboapi.jar y sbowrapper.jar.​
+
+
+.-Java Connector: Example​
+Connect to the Company
+
+#
+ import com.sap.smb.sbo.api.*;​
+
+ ……​
+
+ company = SBOCOMUtil.newCompany();​
+
+ company.setServer("(local)");​
+
+ company.setUseTrusted(new Boolean(true));​
+
+ company.setCompanyDB("SBODemoSK");​
+
+ company.setUserName("manager");​
+
+ company.setPassword("manager");​
+
+ ……​
+
+ rc = company.connect();​
+
+ if (rc == 0) { System.out.println("Connected!");​
+
+ } else { errMsg = company.getLastError();​
+
+ System.out.println("Failed: "+ errMsg.getErrorMessage()+ " "+ errMsg.getErrorCode());​
+
+ }​
+
+ return rc;​
+#
+
+Consulte el ejemplo de código para establecer la conexión desde la aplicación Java al entorno SAP Business One.​
+
+
+.-Java Connector: Example​
+Add a Business Partner​
+
+#
+ import com.sap.smb.sbo.api.*;​
+
+ public static IBusinessPartners bp;​
+
+ ……​
+
+ bp = SBOCOMUtil.newBusinessPartners(cmp);​
+
+ bp.setCardCode("JCO1");​
+
+ bp.setCardName("JCO Test1");​
+
+ bp.setCardType(Integer.valueOf(0));​
+
+ rc = bp.add();​
+#
+
+El fragmento de código actual crea los datos maestros del socio comercial.​
+
+La estructura del código es muy similar a los lenguajes basados ​​en .NET, con cambios menores, como la creación de instancias de objetos comerciales, donde se debe agregar la nueva palabra clave.
+
+
+.-Java Connector: Example​
+Update a Sales Order​
+
+#
+ import com.sap.smb.sbo.api.*;​
+
+ public static IDocuments order;​
+
+ ……​
+
+ order = SBOCOMUtil.getDocuments(cmp, Integer.valueOf(17), Integer.valueOf(138));​
+
+ order.setComments("JCO test1");​
+
+ rc = order.update();​
+#
+
+El siguiente ejemplo demuestra cómo se pueden configurar los comentarios para un pedido de ventas.​
+
+La primera variable de la clase getDocument es el cmp, que representa la interfaz de la empresa.
+
+La segunda variable define el tipo de objeto del documento: el número 17 está asociado a los pedidos de venta.​
+
+La última variable, el número 138, es la entrada del documento.​
+
+
+.-Java Connector: Example​
+RecordSet​
+
+#
+import com.sap.smb.sbo.api.*;​
+
+ICompany com = null;​
+
+IRecordset RecSet = null;​
+
+String FldName, String FldVal;​
+
+Object index;​
+
+String sQueryItemList1 = "Select * From OITM";​
+
+RecSet = SBOCOMUtil.runRecordsetQuery(conn.company,sQueryItemList1);​
+
+int Count = RecSet.getFields().getCount().intValue();​
+
+while (RecSet.isEoF().equals(new Boolean(false))) {​
+
+for (i = 0; i < Count; i++) {​
+
+index = new Integer(i);​
+
+FldName = RecSet.getFields().item(index).getName();​
+
+FldVal = String.valueOf(RecSet.getFields().item(index).getValue());​
+
+RecSet.moveNext();​
+
+}​
+
+} ​
+#
+
+El último ejemplo del tema actual muestra cómo se puede usar la interfaz Recordset.​
+
+
+.-Java Connector: Troubleshooting​
+
+Pruebe el problema en DI API primero para identificar si el problema es causado por DI API
+
+Si el problema no se puede reproducir en DI API, entonces el problema es causado por el conector de Java.
+
+Si el problema PUEDE reproducirse en DI API, entonces es un problema común para JCO y DI API
+
+
+Notas de SAP
+
+1313297: Cómo usar SAP Business One Java Connector (JCO)​
+
+2550515: cómo usar getDataInterface a través de JCO
+
+
+Todos los errores de los programas relacionados con el software se gestionan mediante el envío de un incidente de soporte a SAP.​
+
+Antes de informar un incidente, busque las Notas de SAP, ya que es posible que haya encontrado un problema conocido y la corrección puede estar en el proceso de entrega.
+
+El siguiente método lo ayudará a encontrar el componente afectado del problema.
+
+El problema también debe probarse en la API DI de SAP Business One, utilizando lenguajes basados ​​en .NET, ya que se comunica directamente con la API DI.
+
+Si el problema no se puede reproducir allí, entonces el problema está relacionado con Java Connector, lo que significa que debe crear un incidente de soporte para el componente SBO-SDK-JCO.
+
+De lo contrario, el problema podría estar relacionado con la API DI. En este caso, el componente correspondiente es SBO-SDK-DI.​
+
+Consulte la Nota de SAP enumerada, donde también encontrará más información sobre el uso de Java Connector.
+
+

@@ -1,0 +1,122 @@
+26-05-2022:13:55:18.272	00:00:00,064	(INF)	(Principal.main) Inicializacion: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo\EXO_AddOn_damb0_17376.txt
+26-05-2022:13:55:18.938	00:00:00,665	(INF)	(EXO_UIAPI.New) Conectando a base de datos de compañía SAP...
+26-05-2022:13:55:20.781	00:00:01,842	(INF)	(EXO_UIAPI.New) Company no es nulo: SBODemoES, manager, Clasico
+26-05-2022:13:55:20.904	00:00:00,122	(INF)	(EXO_DIAPI.New AddOn) Instanciando EXO_DI, Version B1: 1000170, depurando: True
+26-05-2022:13:55:20.904	00:00:00,000	(INF)	TipoCliente: Clasico
+26-05-2022:13:55:20.904	00:00:00,000	(INF)	EXO_FuncionesComunes.esTest
+26-05-2022:13:55:20.950	00:00:00,046	(INF)	Identidad windows: S-1-5-21-3725558706-4112542780-4183958314-1001
+26-05-2022:13:55:20.950	00:00:00,000	(INF)	Ruta Inicial enlazadas: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo
+26-05-2022:13:55:20.950	00:00:00,000	(INF)	Identidad windows: S-1-5-21-3725558706-4112542780-4183958314-1001
+26-05-2022:13:55:20.950	00:00:00,000	(INF)	Ruta Final enlazadas: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo
+26-05-2022:13:55:20.966	00:00:00,015	(INF)	(EXO_OGEN.New) Ventana: False
+26-05-2022:13:55:20.966	00:00:00,000	(INF)	(EXO_DIAPI.creaReferenciaSQL) Tipo servidor BD: dst_MSSQL2019
+26-05-2022:13:55:20.966	00:00:00,000	(INF)	(EXO_DIAPI.creaReferenciaSQL) No instanciado
+26-05-2022:13:55:20.966	00:00:00,000	(INF)	Constructor SQL Server
+26-05-2022:13:55:20.982	00:00:00,015	(INF)	New(EXO_SQLServer) Obteniendo cadena de conexion.
+26-05-2022:13:55:21.135	00:00:00,153	(INF)	OGEN=Nothing Generando cadenaSQL: Data Source=DESKTOP-5JCSS76;Initial Catalog=SBODemoES;User ID=sa;Password=Expertone.1
+26-05-2022:13:55:21.135	00:00:00,000	(INF)	New(EXO_SQLServer) Cadena de conexion: Data Source=DESKTOP-5JCSS76;Initial Catalog=SBODemoES;User ID=sa;Password=Expertone.1
+26-05-2022:13:55:21.151	00:00:00,015	(INF)	(EXO_SQLServer.validaConexion) NO conectado SQL.
+26-05-2022:13:55:21.151	00:00:00,000	(INF)	(EXO_SQLServer.validaConexion) Instanciando conexion SQL: Cadena conexion HANA: #Data Source=DESKTOP-5JCSS76;Initial Catalog=SBODemoES;User ID=sa;Password=Expertone.1#
+26-05-2022:13:55:21.220	00:00:00,068	(INF)	FIN Constructor SQL Server
+26-05-2022:13:55:21.220	00:00:00,000	(INF)	(EXO_OGEN) Validacion de version, version tablas: 10.0.1.8
+26-05-2022:13:55:21.251	00:00:00,031	(INF)	(EXO_OGEN.rutaBaseUpd) Inicio: 
+26-05-2022:13:55:21.282	00:00:00,031	(INF)	(EXO_OGEN.rutaBaseUpd) Fin: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\Ficheros
+26-05-2022:13:55:21.282	00:00:00,000	(INF)	Validando ruta (Clasico): C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\Ficheros
+26-05-2022:13:55:21.282	00:00:00,000	(INF)	(EXO_OGEN.actualizaTest) Actualiza Test
+26-05-2022:13:55:21.320	00:00:00,037	(INF)	(EXO_OGEN.ValidandoRuta) Validando permiso: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\Ficheros
+26-05-2022:13:55:21.320	00:00:00,000	(INF)	(PermLectDir) verificando: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\Ficheros
+26-05-2022:13:55:21.336	00:00:00,015	(INF)	(EXO_OGEN.actualizaAct) Actualiza Act
+26-05-2022:13:55:21.382	00:00:00,046	(INF)	(EXO_OGEN.actualizaAct) FIN
+26-05-2022:13:55:21.398	00:00:00,015	(INF)	(EXO_OGEN.actualizaTest) Actualiza Test
+26-05-2022:13:55:21.451	00:00:00,053	(INF)	(EXO_OGEN.New) FIN
+26-05-2022:13:55:21.451	00:00:00,000	(INF)	(EXO_DIAPI.actualizaCodigoUsuario) Obteniendo codigo usuario: manager
+26-05-2022:13:55:21.483	00:00:00,031	(INF)	(EXO_DIAPI.actualizaCodigoUsuario) Usuario manager, 1
+26-05-2022:13:55:21.567	00:00:00,084	(INF)	(EXO_DI) ChkGCHG
+26-05-2022:13:55:21.852	00:00:00,285	(INF)	(EXO_OGEN.sincronizaDLLsEnlazadas) Numero de DLLs enlazadas a sincronizar: 0
+26-05-2022:13:55:21.852	00:00:00,000	(INF)	(EXO_DIAPI.New AddOn) Instanciado EXO_DI 1000170
+26-05-2022:13:55:21.906	00:00:00,053	(INF)	(EXO_UIAPI.New-SQL) Usuario RecordSet: B1_53424F44656D6F4553_RW
+26-05-2022:13:55:22.598	00:00:00,692	(INF)	(EXO_DI) ChkGCHG
+26-05-2022:13:55:22.751	00:00:00,152	(INF)	(EXO_Eventos.cargaDLLs) Numero de Extensiones a cargar: 1
+26-05-2022:13:55:22.751	00:00:00,000	(INF)	(EXO_Eventos.cargaDLLs) Ruta Local AddOn: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo\DLLs
+26-05-2022:13:55:22.781	00:00:00,030	(INF)	(EXO_OGEN.exiteDLLenServidor) Validando fichero en servidor: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\Ficheros\10.Dll_64\EXT:EXO_Trainning.dll:False
+26-05-2022:13:55:22.781	00:00:00,000	(INF)	(EXO_OGEN.exiteDLLenServidor) No existe fichero: EXO_Trainning.dll
+26-05-2022:13:55:22.781	00:00:00,000	(INF)	Existe el fichero C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo\DLLs\EXO_Trainning.dll
+26-05-2022:13:55:22.781	00:00:00,000	(INF)	(EXO_OGEN.VerificarVersionDLL) Fichero a validar: EXO_Trainning.dll
+26-05-2022:13:55:22.781	00:00:00,000	(INF)	(EXO_Eventos.cargaDLLs) Ruta verificada DLL: EXO_Trainning.dll(EXO_Trainning.dll) C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo\DLLs\EXO_Trainning.dll
+26-05-2022:13:55:22.781	00:00:00,000	(INF)	(EXO_Eventos.cargaDLLs) Fichero a cargar (rutaFinal): C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo\DLLs\EXO_Trainning.dll
+26-05-2022:13:55:22.822	00:00:00,040	(INF)	(EXO_Eventos.cargaDLLs) Numero de Clases en la DLL (EXO_Trainning.dll:False): 134
+26-05-2022:13:55:22.900	00:00:00,078	(ERR)	(EXO_Eventos.cargaDLLs) Carga menu UI API: <?xml version="1.0" encoding="UTF-16"?><result><errors><error code="-7130" descr="Menu - Already exists  [66000-68]"/><error descr="Could not recover from previous errors"/><error code="-7130" descr="Menu - Already exists  [66000-68]"/><error descr="Could not recover from previous errors"/></errors></result>
+26-05-2022:13:55:22.947	00:00:00,046	(INF)	(EXO_UIAPI.mantenUI) Iniciando timer mantenUI, activo: False
+26-05-2022:13:55:22.963	00:00:00,015	(INF)	(EXO_Basic.New) (True) Conectada aplicación para OEC Ordenadores: 10.0.1.8
+26-05-2022:13:55:25.344	00:00:02,381	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:25.359	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:25.366	00:00:00,006	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:25.382	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:30.678	00:00:05,296	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:30.710	00:00:00,031	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:30.710	00:00:00,000	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_CHOOSE_FROM_LIST:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:30.741	00:00:00,031	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_CHOOSE_FROM_LIST) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:31.242	00:00:00,501	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:31.258	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:35.606	00:00:04,347	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_CHOOSE_FROM_LIST:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:35.690	00:00:00,084	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_CHOOSE_FROM_LIST:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:35.706	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_CHOOSE_FROM_LIST) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:35.737	00:00:00,031	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_CHOOSE_FROM_LIST:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:35.784	00:00:00,046	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_CHOOSE_FROM_LIST) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:35.806	00:00:00,022	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_CHOOSE_FROM_LIST) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:37.187	00:00:01,380	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:40.965	00:00:03,777	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:40.981	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:40.981	00:00:00,000	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:42.684	00:00:01,703	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:42.722	00:00:00,037	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:42.785	00:00:00,062	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:42.807	00:00:00,022	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:45.513	00:00:02,706	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:45.544	00:00:00,031	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:45.560	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_CHOOSE_FROM_LIST:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:45.575	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_CHOOSE_FROM_LIST) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:46.076	00:00:00,501	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:46.108	00:00:00,031	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:48.065	00:00:01,957	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_CHOOSE_FROM_LIST:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:48.119	00:00:00,053	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_CHOOSE_FROM_LIST:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:48.150	00:00:00,031	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_CHOOSE_FROM_LIST) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:48.181	00:00:00,031	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_CHOOSE_FROM_LIST:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:48.219	00:00:00,037	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_CHOOSE_FROM_LIST) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:48.250	00:00:00,031	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_CHOOSE_FROM_LIST) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:49.538	00:00:01,287	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:53.071	00:00:03,533	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:55:53.086	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:55:53.102	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:56:00.108	00:00:07,005	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:56:00.140	00:00:00,032	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:56:00.190	00:00:00,050	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:56:00.198	00:00:00,008	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:56:01.743	00:00:01,544	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:56:01.774	00:00:00,031	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:56:01.844	00:00:00,069	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:56:01.862	00:00:00,018	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:56:10.566	00:00:08,703	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:56:10.603	00:00:00,037	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:56:10.650	00:00:00,046	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:56:10.666	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:56:18.954	00:00:08,287	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:56:18.969	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:56:19.038	00:00:00,068	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:56:19.054	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:56:20.225	00:00:01,171	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:56:20.241	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:56:20.303	00:00:00,062	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:56:20.319	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:59:36.370	00:03:16,051	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:59:36.386	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:59:36.417	00:00:00,031	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:59:36.433	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:59:41.461	00:00:05,027	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:59:41.483	00:00:00,022	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:59:41.530	00:00:00,046	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:59:41.545	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:59:47.067	00:00:05,521	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:59:47.098	00:00:00,031	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+26-05-2022:13:59:47.145	00:00:00,046	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+26-05-2022:13:59:47.161	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False

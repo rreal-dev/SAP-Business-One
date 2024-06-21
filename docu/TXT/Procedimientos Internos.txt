@@ -1,0 +1,268 @@
+#########################
+PROCEDIMIENTOS INTERNOS#
+#########################
+
+-----------------
+
+.-Gestión de oportunidades/ofertas/proyectos
+
+Herramienta: Sap Business One con el addon Maringo de gestión de proyectos.
+
+-----------------
+
+Clasificación oportunidades
+
+Oportunidad en cliente existente < 3.000 €.
+Oportunidad en cliente existente de >= 3.000 € y clientes nuevos.
+
+comercial: analizar los requerimientos
+básicos del cliente, procesos de la empresa, necesidades a cubrir, etc.
+Si es necesario solicitar consultor o una demo a Jose Agrelo o Tiara Garrido
+
+autorizaciones: realizadas por Alvaro Escudero, Jose Agrelo o Tiara Garrido en SBO
+>= 3.000 € (no requiere aprobacion)
+
+pedidos: comercial actualiza el estado de la oportunidad en el CRM y genera el pedido de cliente
+desde la oferta aprobada, adjuntando el documento firmado con el cliente, comunicándolo por correo a Jose Agrelo.
+
+administracion: administracion procede a dar de alta el proyecto/contrato en Maringo.
+
+planificacion: Jose Agrelo o Tiara Garrido asignan tiempo y recursos necesarios.
+
+seguimiento: cada 15 días revisamos el avance del proyecto y compromiso con el cliente.
+-----------
+
+.-Nuevo proyecto 
+
+requiere llevar un control de:
+- Gestión de proyecto
+- Documento de alcance
+- Instalación del sistema
+- Configuración personalizada
+- Layouts
+- carga de datos
+- Formación
+- Arranque
+
+información mínima para poder rellenar la ficha:
+- Nombre
+- CIF
+- Teléfono de contacto
+- Persona de contacto (nombre, puesto y un correo electrónico)
+- Dirección de facturación
+- Condiciones de facturación
+
+------------
+
+.-persona con proyecto asignado debe informar:
+
+- Si lleva desarrollos.
+- Documento de alcance firmado/ desarrollos.
+- Versión del software (SBO, SQL, Beas, Maringo).
+- Datos de conexión.
+
+-------------
+
+.-Ciclo de vida de un proyecto:
+
+-Documento de alcance
+* Toma de requerimientos.
+* Realización del documento de alcance.
+* Envío del documento de alcance.
+* Revisión por parte del cliente.
+* Posibles modificaciones.
+* Aceptación y firma del documento de alcance. (obligatorio para empezar con el proyecto)
+
+- Configuración de la empresa
+* Instalación SQL/HANA, SBO, verticales correspondientes.
+* Parametrizaciones de la empresa.
+* Realización de impresos.
+* Cargas de datos (si procede):
+ ? Envío y explicación de plantillas.
+ ? Rellenar datos por parte del cliente.
+ ? Recepción de plantillas y revisión.
+ ? Carga de datos en entorno de test.
+ ? Revisión por parte del cliente de los datos cargados.
+ ? Carga de datos en productivo.
+
+- Formación a usuario final
+* Indicar cuánto tiempo se dedicarán a formación y si serán medias jornadas o
+jornadas completas.
+
+- Arranque y soporte:
+* Indicar cuando se realiza el arranque y como se da soporte, cuando presencial y
+cuando remoto.
+
+- Cierre del proyecto (prevision establecida por nosotros y confirmamos on el cliente)
+
+---------------
+
+Requerimientos (diferencias entre comercial y consultor):
+
+Antes de las reuniones enviamos un documento al cliente con los requerimientos para que sea mas efectivo
+
+Es muy importante diferenciar las labores comerciales de las de consultoría. No es labor del consultor el
+discutir con el cliente el alcance o no, eso lo debe hacer el comercial. El consultor apuntará las mejoras
+no incluidas en la oferta y el comercial le ofrecerá la estimación de dichas mejoras no incluidas.
+
+El consultor no debe ejecutar nada que no esté en la propuesta, si el cliente reclama cosas que dice que
+deberían estar se le trasladan al comercial correspondiente.
+
+El realizar concesiones al cliente que no están en la propuesta, lo habitual es que generan más problemas,
+el cliente no va a entender que algo que según el significa un rato le digas que no, es mucho más práctico,
+solo puedo ejecutar lo que está en la propuesta.
+
+------------
+
+.-Herramienta Sharepoint (consultores/desarrolladores)
+
+Carpeta específica del cliente que todos podrán ver, donde se incluirá toda la información
+de dicho proyecto, empezando por la propuesta comercial y terminando con el documento de cierre
+
+Incluye un calendario con la planificacion y el estado de las tareas.
+
+
+Gestión Documental: Sharepoint :
+
+Sap Business One
+
+ * Clientes: en esta carpeta encontraremos toda la información de nuestros
+   clientes activos. Dentro de esta carpeta tenemos la siguiente clasificación:
+
+   ? Actas de cierre: formato: aaaammdd_cliente descripción breve.
+   
+   ? Actas de reuniones formato: aaaammdd_cliente descripción breve.
+   
+   ? Desarrollos.
+
+   ? Documentación: se incorporarán el documento de alcance firmado y
+     cualquier otra documentación que explique el funcionamiento del cliente.
+
+   ? Documentación comercial: encontraremos las propuestas comerciales
+     aceptadas por el cliente.
+
+   ? Otra documentación relevante: documentación que consideremos
+     relevante para el proyecto.
+
+ * Plantillas: donde se encuentran las plantillas a utilizar para las actas,
+   documentación, presentaciones…Plantilla información básica de cada cliente
+   (esta plantilla se deberá rellenar e ir actualizando en cada uno de los clientes).
+
+-------------
+
+.-Bolsas de horas
+
+se pueden contratar por varios motivos:
+- Soporte
+- Mejoras y ampliaciones
+- Formaciones específicas
+- Migraciones
+- Otros motivos
+
+si quedan menos de 2 horas de bolsa,
+soporte comunica con el comercial para dar aviso
+
+consultar horas disponibles:
+Menú principal/Análisis/Gestor de consultas/Bolsa de horas/”C – Estado bolsa de horas sin filtro de proyecto”. 
+Es necesario rellenar todos los filtros del informe.
+
+- Una vez consumida la bolsa de horas, el sistema no dejará imputar nuevos tiempos
+- No se habilitará la bolsa de horas, 
+  sino que se creará una nueva bolsa de horas dentro de un nuevo contrato
+
+----------------
+
+.-Gestión de soporte
+
+La incidencia se recibe a través de soporte@expertone.es o el portal de Maringo
+El Comercial debe dar de alta al cliente en el portal para llevar el seguimiento 
+de la incidencia.
+
+Gestionamos a través del módulo de soporte-(mis consultas de soporte o unidad de soporte).
+
+Las incidencias están clasificadas por estado.
+
+En la columna de responsable se verá la persona asignada a dicha incidencia.
+
+Para asignar la incidencia a una persona nueva, dentro de la incidencia se dará a la opción de “Asignar
+tramitador”: 
+** Antes de asignar una incidencia, se deberá revisar que dicho cliente está activo y tiene suficiente
+tiempo para ser atendido.
+
+El propio consultor cambia el estado de la incidencia de “abierto” a “En proceso” 
+a través de la opción “Cambiar estado”
+
+Respondemos a la incidencia a través de la opción (añair comentarios).
+Si se marca la casilla de interno, en principio no le llega al cliente.
+
+-Estados:
+? en proceso: si estamos trabajando sobre ella.
+? resuelto (no se utilizará el estado de cerrado).
+? pendiente de aprobación por parte del cliente.
+? Espera de feedback. Si esperamos más información por parte del cliente.
+
+Si una incidencia es asignada a un consultor y por carga de trabajo no puede realizarla, éste debe
+comunicarlo a soporte para intentar cambiar la persona asignada o gestionarlo.
+
+-------------------
+
+.-Imputación de tiempos
+
+No registrada en el portal: se impuntan los tiempos con el contrato correspondiente
+(por lo general, bolsa de horas). Dejamos en el campo de notas la gestion realizada.
+
+Registrada en el portal: Servicio(bolsa de horas), Fecha, Horas, Facturado, Actividad.
+
+Otros proyectos a imputar:
+- Proyecto Varios / BPO
+
+- Sap Consultoría /Beas/ Maringo Consultoría
+
+- Ausencias Expert One/ BPO: se deberán imputar los tiempos que no estamos en la
+  oficina por temas personales y sin justificación médica.
+
+- Ausencias por enfermedad (Expert One/BPO): se deberán imputar los tiempos que no
+  estamos en la oficina y tienen un justificante médico. El justificante médico se deberá
+  enviar a rrhh@expertone.es para su debida comunicación en un plazo máximo de 3
+  días.
+
+
+Para la gestión comercial, se deberán imputar las horas a cada cliente y 
+en caso de que no sean de cliente se debe seleccionar el proyecto Comercial P100206 
+con los siguientes contratos:
+
+- Apoyo comercial interno
+
+- Demo
+
+- Gestión comercial
+
+---------------------------------
+
+.-Gastos de viajes y reservas
+
+Cuando sea necesario reservar billetes, coches u hoteles se deberá comunicar a administracion@expertone.es
+
+No se pagarán los gastos con una antigüedad de más de 60 días a menos que estén autorizados por
+Dirección.
+
+Accedemos a la página de Maringo con nuestro usuario y contraseña de siempre. 
+En el menú principal pinchamos en Gastos de viaje/Entrada gastos de viaje.
+
+------------------------
+
+.-Gestión de vacaciones
+
+La gestión de vacaciones en Maringo consiste en los siguientes pasos:
+1. Solicitud de vacaciones.
+2. Aprobación o Denegación de vacaciones.
+3. Cancelación de vacaciones (ocasionalmente puede ocurrir).
+
+Las vacaciones correspondientes a un año natural deben de ser disfrutadas 
+en el mismo año y como plazo máximo hasta el día 31 de enero del siguiente año, 
+en caso contrario se perderá el derecho a disfrutar de las mismas.
+
+Una vez enviada la solicitud, ya no puede modificarla.
+
+Consultar: Menú principal, en Gestión de vacaciones/Resumen de vacaciones.
+#########################

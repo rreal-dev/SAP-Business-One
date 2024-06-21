@@ -1,0 +1,31 @@
+Public Function ConectarSBO() As String
+        Dim lRetCode, ErrorCode As Long
+        Dim ErrorMessage As String = ""
+
+        oCompany = New SAPbobsCOM.Company()
+        oCompany.DbServerType = SAPbobsCOM.BoDataServerTypes.dst_HANADB
+        oCompany.language = SAPbobsCOM.BoSuppLangs.ln_Spanish
+        oCompany.DbUserName = "SYSTEM" 'UsuarioHANA
+        oCompany.DbPassword = "xxxxxxxxxx" 'PasswordHANA
+        oCompany.Server = "NDB@miservidor:30013"
+        oCompany.LicenseServer = "miservidor:40000"
+        oCompany.SLDServer = "miservidor:40000"
+        oCompany.CompanyDB = "SBO_BBDD"
+        oCompany.UserName = "manager"
+        oCompany.Password = "1234"
+        oCompany.UseTrusted = False
+
+
+        lRetCode = oCompany.Connect()
+
+
+        If lRetCode <> 0 Then
+            oCompany.GetLastError(ErrorCode, ErrorMessage)
+            ConectarSBO = "Desconectado"
+            MsgBox(ErrorMessage + ErrorCode.ToString + oCompany.GetLastErrorDescription)
+        Else
+            ConectarSBO = "Conectado"
+            MsgBox("OK")
+        End If
+
+    End Function

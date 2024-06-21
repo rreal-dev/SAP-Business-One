@@ -1,0 +1,2 @@
+27-05-2022:14:31:25.019	00:00:00,025	(INF)	(Principal.main) Inicializacion: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo\EXO_AddOn_damb0_8808.txt
+27-05-2022:14:31:26.084	00:00:01,063	(ERR)	(EXO_UIPAI.New) Excepcion instanciacion UI API: Connection - Could not find SBO that match the connection string

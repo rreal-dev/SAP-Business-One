@@ -1,0 +1,9 @@
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_10_EndProject_UI_API_Events\bin\Debug\10_UI_API_events.exe.config
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_10_EndProject_UI_API_Events\bin\Debug\10_UI_API_events.exe
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_10_EndProject_UI_API_Events\bin\Debug\10_UI_API_events.pdb
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_10_EndProject_UI_API_Events\bin\Debug\SAPBusinessOneSDK.dll
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_10_EndProject_UI_API_Events\obj\Debug\TB1300_10_EndProject_UI_API_Events.csprojResolveAssemblyReference.cache
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_10_EndProject_UI_API_Events\obj\Debug\TB1300.Properties.Resources.resources
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_10_EndProject_UI_API_Events\obj\Debug\TB1300_10_EndProject_UI_API_Events.csproj.GenerateResource.Cache
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_10_EndProject_UI_API_Events\obj\Debug\10_UI_API_events.exe
+C:\Desarrollo\PracticasRaul\SOLUCIONES\TB1300_10_EndProject_UI_API_Events\obj\Debug\10_UI_API_events.pdb

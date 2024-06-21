@@ -1,0 +1,205 @@
+############################
+TB1300_08_DI_API_DI_Service #
+----------------------------
+
+.-DI Server: Topic Objectives​
+
+En esta unidad cubriremos el principio de uso del servicio DI.​
+
+
+.-DI Server: Introduction​
+
+El servidor DI está diseñado para ejecutarse en una máquina servidor y proporcionar una capa de acceso de arquitectura ligera orientada a servicios para fines de integración de trabajo pesado.
+
+Los servicios DI brindan interfaces a la lógica adicional dentro de SAP Business One que no está necesariamente encapsulada en un objeto comercial.
+
+Basado en la tecnología DI API, pero actúa como un "servidor" (es decir, un servicio)
+
+Admite todos los objetos comerciales expuestos por DI API
+
+Permite el desarrollo de soluciones basadas en SOAP
+
+Proporciona una solución adecuada para operaciones de servicio pesado
+
+Puede admitir una mayor cantidad de clientes que trabajan al mismo tiempo
+
+No limita al cliente a una interfaz COM, sino que permite una amplia gama de posibles tecnologías de cliente, como la creación de aplicaciones web tradicionales mediante ASP o JSP.
+
+El servidor DI procesa todos los comandos dentro de una solicitud SOAP como una sola transacción.
+
+El mecanismo de agrupación de conexiones mejora la escalabilidad y proporciona un mejor rendimiento
+
+
+.-DI Server: SOAP Message Structure​
+
+SOAP Request Message Example​
+#
+imagen codigo xml
+#
+
+SOAP Response Message Example​
+#
+imagen codigo xml
+#
+
+Un mensaje SOAP es un documento XML ordinario que contiene tres elementos: elementos de sobre, encabezado y cuerpo.​
+
+En esta diapositiva, puede ver ejemplos de mensajes SOAP para solicitud y respuesta.
+
+Los elementos principales del mensaje SOAP son:​
+
+Elemento de sobre, que identifica el documento XML como un mensaje SOAP. El elemento del sobre representa una sola transacción.​
+
+     Debe utilizar el espacio de nombres xmlns:env="http://schemas.xmlsoap.org/soap/envelope/“​
+
+Elemento de encabezado, que solo se incluye en el mensaje de solicitud SOAP y contiene el ID de sesión, que proporciona el servidor DI después de iniciar sesión.
+
+Elemento de cuerpo, que contiene comandos en el mensaje de solicitud en formato XML, para conectarse al servidor DI o manipular la base de datos de SAP Business One.​
+
+     Cada comando debe incluir el espacio de nombres: xmlns:dis="http://www.sap.com/SBO/DIS/".​
+
+
+.-DI Server: Main Methods​     
+
+    *Interact: la sintaxis del método es
+    Function Interact(ByVal SOAPCommand As String) As String​
+
+        SOAPCommand - Un string que contiene el mensaje de solicitud SOAP.​
+
+        String - Un valor devuelto que contiene el mensaje de respuesta SOAP
+
+​
+
+    *BatchInteract: realizar múltiples transacciones en la base de datos usando un solo         mensaje de solicitud SOAP
+
+
+La estructura BatchInteract consta de un elemento Envelopes que contiene un elemento Envelope separado para cada transacción, como se muestra a continuación:
+
+​
+#
+ xmlns:env="http://schemas.xmlsoap.org/soap/envelope/"​
+
+ <Envelopes>​
+
+     <Envelope>​
+
+       .​
+
+     </Envelope>​
+
+     <Envelope>​
+
+       .​
+
+     </Envelope>​
+
+ </Envelopes>
+#
+
+La interfaz de objeto del servidor DI consta de dos métodos, llamados Interact y BatchInteract.​
+
+El método Interact es la interfaz principal del servidor DI.​
+
+El parámetro de entrada del método Interact es un mensaje de solicitud SOAP (cadena), que tiene que aplicar el esquema de objeto comercial. El valor de retorno del método Interact es un mensaje de respuesta SOAP.
+
+Consulte la sintaxis del método Interact resaltado en verde.​
+
+El segundo método es BatchInteract.​
+
+El método BatchInteract le permite realizar múltiples transacciones en la base de datos con un solo mensaje de solicitud SOAP.​
+
+Por ejemplo, puede agregar 1000 elementos a la base de datos con un solo mensaje de solicitud SOAP.
+
+La principal ventaja de usar este método en lugar del método Interact es que si falla una sola transacción, todas las transacciones restantes no se verán afectadas.
+
+La estructura BatchInteract consta de un elemento Envelopes, que contiene un elemento Envelope separado para cada transacción, como se muestra a continuación.
+
+La estructura de cada sobre es la misma que se describe en Estructura del mensaje SOAP del servidor DI
+
+
+.-DI API Introduction – DI Server Software Architecture​
+
+El servicio DI es básicamente el servicio web para DI API.
+
+La lógica empresarial se proporciona a través de OBServerDLL, que se ejecuta en el servidor en lugar de que DI API lo cargue en segundo plano.
+
+Los clientes basados ​​en la web acceden al servidor DI directamente y devuelven los datos al lado del usuario. No es necesario tener la DI API instalada en el lado del cliente, lo cual es obligatorio para las soluciones complementarias clásicas.
+
+El servicio DI puede ser consumido por una solución basada en web, así como por una aplicación de escritorio o móvil.
+
+
+.-DI Server: SOAP Command types​
+
+There are four types of commands:​
+
+    System Commands – Login, logout (and “debug”).​
+
+    Data Manipulation – Add, Update, Cancel, Close and other basic operations on             objects.​
+
+    Data Retrieve – GetByKey, ExecuteSQL and Functions which are encapsulated in the         SBObob object in DI API.​
+
+    DI Services – similar to DI API services. The same services as the DI API                (MessagesService, AlertsManagementService,…)
+
+
+Solo se permite un tipo de comando en una sola solicitud SOAP.
+
+Echemos un vistazo a los tipos de comandos:
+
+Los comandos del sistema son responsables de la gestión de la conexión y la sesión, por ejemplo, Iniciar sesión y Cerrar sesión.
+
+Los comandos de manipulación de datos le permiten realizar cambios en los datos, por ejemplo, agregar, actualizar y eliminar.
+
+Los comandos de recuperación de datos brindan acceso a los datos de SAP Business One, por ejemplo, las funciones GetByKey, ExecuteSQL y SBObob.
+
+El comando basado en servicios permite consumir servicios basados ​​en DI API como MessagesService y AlertsManagementService.
+
+
+.-DI Server: How to use it​
+
+Echemos un vistazo a la teoría del uso.
+
+Cree una estructura de mensaje SOAP. Este mensaje debe estar codificado mediante XML y debe utilizar el espacio de nombres de sobre SOAP.​
+
+Luego ejecute la llamada enviando la solicitud SOAP al servidor SAP Business One DI.​
+
+Finalmente, consuma la respuesta proporcionada por el servidor DI. La respuesta se devuelve en formato XML.​
+
+
+.-DI Server: Example – Login​
+
+El cuadro superior muestra el proceso de inicio de sesión para la DI API. El cuadro inferior contiene un ejemplo de inicio de sesión para el servidor DI.
+
+Para establecer la conexión para el servidor DI, es necesario utilizar el nombre del elemento de inicio de sesión con el espacio de nombres SBODI_Server. En el elemento secundario, puede definir las propiedades requeridas para la conexión.​
+
+Después de ejecutar esta solicitud SOAP, recibe una respuesta SOAP con información detallada sobre el manejo en el lado del servidor DI.
+
+Como puede ver, el uso del servidor DI es ligeramente diferente al que aprendimos para la API DI.
+
+
+.-DI Server: Example – Add Object​
+
+Continuando, ahora vemos cómo podemos agregar una entrada de datos maestros de socio comercial utilizando el servidor DI.
+
+Para agregar el objeto, se debe ingresar el elemento AddObject, mientras que ObjectData describe todo el modelo BOM - BO XML. Ya hemos visto este modelo BOM – BO en DI API, donde interactuamos con objetos. El servidor DI usa la misma estructura XML que la API DI.​
+
+
+.-Overview of differences between DI API and DI Server​
+
+Veamos las diferencias clave entre el servidor DI y la API DI.
+
+La principal diferencia es que la DI API está orientada al modelo de objetos componentes (COM) y el servidor DI tiene una arquitectura orientada a SOAP.
+
+Desde el lado de la llamada de función, la API DI usa muchas llamadas a procedimientos remotos, mientras que el servidor DI solo usa una sola solicitud SOAP.
+
+La DI API solo puede manejar una conexión por base de datos, mientras que el servidor DI puede manejar varias conexiones a la misma base de datos.
+
+En DI API, los comandos pueden entregar la información a otro comando en la transacción global. El servidor DI no es compatible con esta característica.
+
+El servidor DI no puede manejar metadatos.
+
+El servidor DI no admite el inicio de sesión único con la API de la interfaz de usuario.
+
+La DI API tiene implementación del lado del cliente, mientras que el servidor DI tiene implementación del lado del servidor.
+
+
+.-

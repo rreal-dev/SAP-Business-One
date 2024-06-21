@@ -1,0 +1,56 @@
+27-05-2022:14:35:27.666	00:00:00,020	(INF)	(Principal.main) Inicializacion: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo\EXO_AddOn_damb0_17004.txt
+27-05-2022:14:35:27.948	00:00:00,281	(INF)	(EXO_UIAPI.New) Conectando a base de datos de compañía SAP...
+27-05-2022:14:35:29.847	00:00:01,899	(INF)	(EXO_UIAPI.New) Company no es nulo: SBODemoES, manager, Clasico
+27-05-2022:14:35:29.969	00:00:00,121	(INF)	(EXO_DIAPI.New AddOn) Instanciando EXO_DI, Version B1: 1000170, depurando: True
+27-05-2022:14:35:29.971	00:00:00,002	(INF)	TipoCliente: Clasico
+27-05-2022:14:35:29.971	00:00:00,000	(INF)	EXO_FuncionesComunes.esTest
+27-05-2022:14:35:30.011	00:00:00,040	(INF)	Identidad windows: S-1-5-21-3725558706-4112542780-4183958314-1001
+27-05-2022:14:35:30.019	00:00:00,008	(INF)	Ruta Inicial enlazadas: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo
+27-05-2022:14:35:30.019	00:00:00,000	(INF)	Identidad windows: S-1-5-21-3725558706-4112542780-4183958314-1001
+27-05-2022:14:35:30.019	00:00:00,000	(INF)	Ruta Final enlazadas: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo
+27-05-2022:14:35:30.019	00:00:00,000	(INF)	(EXO_OGEN.New) Ventana: False
+27-05-2022:14:35:30.031	00:00:00,012	(INF)	(EXO_DIAPI.creaReferenciaSQL) Tipo servidor BD: dst_MSSQL2019
+27-05-2022:14:35:30.031	00:00:00,000	(INF)	(EXO_DIAPI.creaReferenciaSQL) No instanciado
+27-05-2022:14:35:30.031	00:00:00,000	(INF)	Constructor SQL Server
+27-05-2022:14:35:30.031	00:00:00,000	(INF)	New(EXO_SQLServer) Obteniendo cadena de conexion.
+27-05-2022:14:35:30.172	00:00:00,140	(INF)	OGEN=Nothing Generando cadenaSQL: Data Source=DESKTOP-5JCSS76;Initial Catalog=SBODemoES;User ID=sa;Password=Expertone.1
+27-05-2022:14:35:30.172	00:00:00,000	(INF)	New(EXO_SQLServer) Cadena de conexion: Data Source=DESKTOP-5JCSS76;Initial Catalog=SBODemoES;User ID=sa;Password=Expertone.1
+27-05-2022:14:35:30.230	00:00:00,058	(INF)	(EXO_SQLServer.validaConexion) NO conectado SQL.
+27-05-2022:14:35:30.230	00:00:00,000	(INF)	(EXO_SQLServer.validaConexion) Instanciando conexion SQL: Cadena conexion HANA: #Data Source=DESKTOP-5JCSS76;Initial Catalog=SBODemoES;User ID=sa;Password=Expertone.1#
+27-05-2022:14:35:30.377	00:00:00,147	(INF)	FIN Constructor SQL Server
+27-05-2022:14:35:30.393	00:00:00,015	(INF)	(EXO_OGEN) Validacion de version, version tablas: 10.0.1.8
+27-05-2022:14:35:30.409	00:00:00,015	(INF)	(EXO_OGEN.rutaBaseUpd) Inicio: 
+27-05-2022:14:35:30.431	00:00:00,022	(INF)	(EXO_OGEN.rutaBaseUpd) Fin: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\Ficheros
+27-05-2022:14:35:30.431	00:00:00,000	(INF)	Validando ruta (Clasico): C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\Ficheros
+27-05-2022:14:35:30.446	00:00:00,015	(INF)	(EXO_OGEN.actualizaTest) Actualiza Test
+27-05-2022:14:35:30.462	00:00:00,015	(INF)	(EXO_OGEN.ValidandoRuta) Validando permiso: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\Ficheros
+27-05-2022:14:35:30.462	00:00:00,000	(INF)	(PermLectDir) verificando: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\Ficheros
+27-05-2022:14:35:30.478	00:00:00,015	(INF)	(EXO_OGEN.actualizaAct) Actualiza Act
+27-05-2022:14:35:30.531	00:00:00,053	(INF)	(EXO_OGEN.actualizaAct) FIN
+27-05-2022:14:35:30.547	00:00:00,015	(INF)	(EXO_OGEN.actualizaTest) Actualiza Test
+27-05-2022:14:35:30.609	00:00:00,062	(INF)	(EXO_OGEN.New) FIN
+27-05-2022:14:35:30.609	00:00:00,000	(INF)	(EXO_DIAPI.actualizaCodigoUsuario) Obteniendo codigo usuario: manager
+27-05-2022:14:35:30.631	00:00:00,022	(INF)	(EXO_DIAPI.actualizaCodigoUsuario) Usuario manager, 1
+27-05-2022:14:35:30.694	00:00:00,062	(INF)	(EXO_DI) ChkGCHG
+27-05-2022:14:35:31.153	00:00:00,459	(INF)	(EXO_OGEN.sincronizaDLLsEnlazadas) Numero de DLLs enlazadas a sincronizar: 0
+27-05-2022:14:35:31.153	00:00:00,000	(INF)	(EXO_DIAPI.New AddOn) Instanciado EXO_DI 1000170
+27-05-2022:14:35:31.285	00:00:00,131	(INF)	(EXO_UIAPI.New-SQL) Usuario RecordSet: B1_53424F44656D6F4553_RW
+27-05-2022:14:35:32.148	00:00:00,862	(INF)	(EXO_DI) ChkGCHG
+27-05-2022:14:35:32.278	00:00:00,130	(INF)	(EXO_Eventos.cargaDLLs) Numero de Extensiones a cargar: 1
+27-05-2022:14:35:32.278	00:00:00,000	(INF)	(EXO_Eventos.cargaDLLs) Ruta Local AddOn: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo\DLLs
+27-05-2022:14:35:32.308	00:00:00,030	(INF)	(EXO_OGEN.exiteDLLenServidor) Validando fichero en servidor: C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\Ficheros\10.Dll_64\EXT:EXO_Trainning.dll:False
+27-05-2022:14:35:32.308	00:00:00,000	(INF)	(EXO_OGEN.exiteDLLenServidor) No existe fichero: EXO_Trainning.dll
+27-05-2022:14:35:32.308	00:00:00,000	(INF)	Existe el fichero C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo\DLLs\EXO_Trainning.dll
+27-05-2022:14:35:32.308	00:00:00,000	(INF)	(EXO_OGEN.VerificarVersionDLL) Fichero a validar: EXO_Trainning.dll
+27-05-2022:14:35:32.308	00:00:00,000	(INF)	(EXO_Eventos.cargaDLLs) Ruta verificada DLL: EXO_Trainning.dll(EXO_Trainning.dll) C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo\DLLs\EXO_Trainning.dll
+27-05-2022:14:35:32.308	00:00:00,000	(INF)	(EXO_Eventos.cargaDLLs) Fichero a cargar (rutaFinal): C:\Users\damb0\OneDrive\Escritorio\V10_TRAINNING\EXO_Kernel_10.0.1.8\x64\desarrollo\DLLs\EXO_Trainning.dll
+27-05-2022:14:35:32.452	00:00:00,143	(INF)	(EXO_Eventos.cargaDLLs) Numero de Clases en la DLL (EXO_Trainning.dll:False): 134
+27-05-2022:14:35:33.484	00:00:01,031	(INF)	(EXO_UIAPI.mantenUI) Iniciando timer mantenUI, activo: False
+27-05-2022:14:35:33.544	00:00:00,060	(INF)	(EXO_Basic.New) (True) Conectada aplicación para OEC Ordenadores: 10.0.1.8
+27-05-2022:14:40:30.275	00:04:56,730	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)True:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+27-05-2022:14:40:30.291	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+27-05-2022:14:40:30.291	00:00:00,000	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Invocando gestion evento (et_ITEM_PRESSED:(BA)False:(FRM))EXO_FORM_TableSearch (Clase:Cliente.Matriz)
+27-05-2022:14:40:30.306	00:00:00,015	(INF)	(EXO_Basic_Functions.SBOApp_ItemEvent) Evento gestionado (et_ITEM_PRESSED) (Clase:Matriz), transaccion: False
+27-05-2022:14:40:40.868	00:00:10,561	(INF)	(EXO_Eventos.SBOApp_AppEvent) Finalizando AddOn
+27-05-2022:14:40:41.886	00:00:01,017	(INF)	Dispose EXO_SAP
+27-05-2022:14:40:41.886	00:00:00,000	(INF)	(EXO_UIAPI.Dispose) EXO_UIAPI
